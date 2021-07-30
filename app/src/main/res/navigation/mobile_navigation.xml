@@ -12,14 +12,26 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.everdeng.android.app.wanandroid.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_system"
+        android:name="com.everdeng.android.app.wanandroid.ui.system.SystemFragment"
+        android:label="@string/title_system"
+        tools:layout="@layout/fragment_system" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.everdeng.android.app.wanandroid.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_project"
+        android:name="com.everdeng.android.app.wanandroid.ui.project.ProjectFragment"
+        android:label="@string/title_project"
+        tools:layout="@layout/fragment_project" />
+
+    <fragment
+        android:id="@+id/navigation_qa"
+        android:name="com.everdeng.android.app.wanandroid.ui.qa.QAFragment"
+        android:label="@string/title_qa"
+        tools:layout="@layout/fragment_qa" />
+
+    <fragment
+        android:id="@+id/navigation_mine"
+        android:name="com.everdeng.android.app.wanandroid.ui.mine.MineFragment"
+        android:label="@string/title_mine"
+        tools:layout="@layout/fragment_mine" />
 </navigation>

@@ -20,9 +20,9 @@ import java.util.Map;
  * Date: 2020/10/9:14:05.
  * Desc:
  */
-public abstract class BaseDataActivity<T extends BaseViewModel> extends BaseActivity{
+public abstract class BaseDataActivity<DB extends ViewDataBinding, T extends BaseViewModel> extends BaseActivity{
 
-    protected ViewDataBinding mBinding;
+    protected DB mBinding;
     protected DataBindingConfig bindingConfig;
     protected T mViewModel;
 
@@ -95,7 +95,7 @@ public abstract class BaseDataActivity<T extends BaseViewModel> extends BaseActi
                 modelHandler.initEvent();
             }
         }
-        mBinding = dataBinding;
+        mBinding = (DB) dataBinding;
     }
 
 
@@ -105,7 +105,7 @@ public abstract class BaseDataActivity<T extends BaseViewModel> extends BaseActi
     private T initViewModel() {
         try {
             // 通过反射获取model的真实类型
-            Class<T> clazz = ReflectionUtils.getGenericCls(this.getClass());
+            Class<T> clazz = ReflectionUtils.getGenericCls(this.getClass(), 1);
             // 通过反射创建model的实例
             return clazz.newInstance();
         } catch (Exception e) {

@@ -17,8 +17,8 @@ import com.xm.lib.manager.LogPrint;
  * Date: 2020/10/9:14:05.
  * Desc:
  */
-public abstract class BaseTitleActivity<T extends BaseViewModel, TM extends BaseActonBarModel>
-            extends BaseDataActivity<T>{
+public abstract class BaseTitleActivity<DB extends ViewDataBinding, T extends BaseViewModel, TM extends BaseActonBarModel>
+            extends BaseDataActivity<DB, T>{
 
     protected TM mActionBarModel;
 

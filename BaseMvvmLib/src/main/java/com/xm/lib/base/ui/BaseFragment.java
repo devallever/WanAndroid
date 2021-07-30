@@ -39,11 +39,11 @@ import java.util.Map;
  * Date: 2020/10/11:11:24.
  * Desc:
  */
-public abstract class BaseFragment<T extends BaseViewModel> extends Fragment implements IBaseView {
+public abstract class BaseFragment<DB extends ViewDataBinding, T extends BaseViewModel> extends Fragment implements IBaseView {
 
     private DataBindingConfig bindingConfig;
     protected T mViewModel;
-    private ViewDataBinding mBinding;
+    private DB mBinding;
     private View mRoot;
     protected Context mCxt;
     private boolean isLoadFirst;
@@ -140,7 +140,7 @@ public abstract class BaseFragment<T extends BaseViewModel> extends Fragment imp
     private T initViewModel() {
         try {
             // 通过反射获取model的真实类型
-            Class<T> clazz = ReflectionUtils.getGenericCls(this.getClass());
+            Class<T> clazz = ReflectionUtils.getGenericCls(this.getClass(), 1);
             // 通过反射创建model的实例
             return clazz.newInstance();
         } catch (Exception e) {
