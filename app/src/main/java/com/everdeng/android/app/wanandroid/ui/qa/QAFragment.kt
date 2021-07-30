@@ -7,7 +7,7 @@ import com.everdeng.android.app.wanandroid.databinding.FragmentQaBinding
 import com.everdeng.android.app.wanandroid.ui.qa.model.QAViewModel
 import com.xm.lib.base.config.DataBindingConfig
 
-class QAFragment: BaseFragment2<FragmentQaBinding, QAViewModel>() {
+class QAFragment : BaseFragment2<FragmentQaBinding, QAViewModel>() {
     override fun initDataBindingConfig() = DataBindingConfig(R.layout.fragment_qa, BR.qaViewModel)
 
     override fun initDataAndEvent() {

@@ -7,8 +7,9 @@ import com.everdeng.android.app.wanandroid.databinding.FragmentSystemBinding
 import com.everdeng.android.app.wanandroid.ui.system.model.SystemViewModel
 import com.xm.lib.base.config.DataBindingConfig
 
-class SystemFragment: BaseFragment2<FragmentSystemBinding, SystemViewModel>() {
-    override fun initDataBindingConfig() = DataBindingConfig(R.layout.fragment_system, BR.systemViewModel)
+class SystemFragment : BaseFragment2<FragmentSystemBinding, SystemViewModel>() {
+    override fun initDataBindingConfig() =
+        DataBindingConfig(R.layout.fragment_system, BR.systemViewModel)
 
     override fun initDataAndEvent() {
     }

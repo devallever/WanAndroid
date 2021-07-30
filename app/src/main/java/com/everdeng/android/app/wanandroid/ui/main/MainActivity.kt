@@ -1,8 +1,6 @@
 package com.everdeng.android.app.wanandroid.ui.main
 
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.everdeng.android.app.wanandroid.BR
 import com.everdeng.android.app.wanandroid.R
@@ -38,5 +36,6 @@ class MainActivity : BaseDataActivity2<ActivityMainBinding, MainViewModel>() {
     override fun destroyView() {
     }
 
-    override fun initDataBindingConfig() = DataBindingConfig(R.layout.activity_main, BR.mainViewModel)
+    override fun initDataBindingConfig() =
+        DataBindingConfig(R.layout.activity_main, BR.mainViewModel)
 }

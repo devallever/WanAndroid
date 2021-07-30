@@ -7,8 +7,9 @@ import com.everdeng.android.app.wanandroid.databinding.FragmentMineBinding
 import com.everdeng.android.app.wanandroid.ui.mine.model.MineViewModel
 import com.xm.lib.base.config.DataBindingConfig
 
-class MineFragment: BaseFragment2<FragmentMineBinding, MineViewModel>() {
-    override fun initDataBindingConfig() = DataBindingConfig(R.layout.fragment_mine, BR.mineViewModel)
+class MineFragment : BaseFragment2<FragmentMineBinding, MineViewModel>() {
+    override fun initDataBindingConfig() =
+        DataBindingConfig(R.layout.fragment_mine, BR.mineViewModel)
 
     override fun initDataAndEvent() {
     }
