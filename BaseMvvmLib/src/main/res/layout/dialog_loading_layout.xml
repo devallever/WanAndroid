@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <data>
+                <variable
+                    name="loadViewModel"
+                    type="com.xm.lib.widget.LoadingDialog.LoadingDialogViewModel" />
+        </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_loading_bg">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/tv_toast"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:indeterminateDrawable="@drawable/ui_rotate_mum_light"
+            android:indeterminateDuration="1200" />
+
+        <TextView
+            android:id="@+id/tv_toast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:text="@{loadViewModel.toastMsg}"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/sp_18" />
+    </RelativeLayout>
+</layout>

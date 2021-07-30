@@ -1,2 +1,4 @@
 rootProject.name = "WanAndroid"
 include ':app'
+include ':BaseMvvmLib'
+include ':Net'
