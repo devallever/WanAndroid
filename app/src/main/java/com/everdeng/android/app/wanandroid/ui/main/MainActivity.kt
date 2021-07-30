@@ -1,5 +1,6 @@
 package com.everdeng.android.app.wanandroid.ui.main
 
+import android.view.Menu
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.everdeng.android.app.wanandroid.BR
@@ -10,6 +11,7 @@ import com.everdeng.android.app.wanandroid.ui.main.model.MainViewModel
 import com.everdeng.android.app.wanandroid.util.Utils
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.xm.lib.base.config.DataBindingConfig
+import com.xm.lib.util.log
 
 class MainActivity : BaseDataActivity2<ActivityMainBinding, MainViewModel>() {
 
@@ -31,6 +33,12 @@ class MainActivity : BaseDataActivity2<ActivityMainBinding, MainViewModel>() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         */
         navView.setupWithNavController(navController)
+
+        //代码在BottomNavigationView的构造方法中
+        //解决BottomNavigationView多次点击重复replace fragment
+        navView.setOnNavigationItemReselectedListener {
+            log("${it.itemId}")
+        }
     }
 
     override fun destroyView() {

@@ -11,6 +11,6 @@ abstract class BaseDataActivity2<DB : ViewDataBinding, T : BaseViewModel<IBaseVi
 //    override fun isStatusBarDark(): Boolean = true
 
     //使用了这个就不用重写initTopView
-    override fun isPaddingTop(): Boolean = true
+//    override fun isPaddingTop(): Boolean = true
     override fun statusColor(): Int = R.color.colorPrimary
 }
