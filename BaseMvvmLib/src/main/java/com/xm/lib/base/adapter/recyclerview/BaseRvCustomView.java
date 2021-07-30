@@ -6,6 +6,8 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.ColorRes;
@@ -27,7 +29,7 @@ import java.util.Map;
 /**
  * @author Administrator
  */
-public abstract class BaseRvCustomView<T, VM extends BaseRvCustomViewModel> extends RelativeLayout implements IBaseCvDataListener<T> {
+public abstract class BaseRvCustomView<T, VM extends BaseRvCustomViewModel> extends FrameLayout implements IBaseCvDataListener<T> {
 
     protected Context mCxt;
     private ViewDataBinding mDataBinding;
