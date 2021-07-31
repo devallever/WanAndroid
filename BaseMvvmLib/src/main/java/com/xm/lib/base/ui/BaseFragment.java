@@ -43,7 +43,7 @@ public abstract class BaseFragment<DB extends ViewDataBinding, T extends BaseVie
 
     private DataBindingConfig bindingConfig;
     protected T mViewModel;
-    private DB mBinding;
+    protected DB mBinding;
     private View mRoot;
     protected Context mCxt;
     private boolean isLoadFirst;

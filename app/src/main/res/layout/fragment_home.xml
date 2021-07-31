@@ -42,10 +42,15 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <View
+                    <com.youth.banner.Banner
+                        android:layout_marginTop="@dimen/dp_5"
                         android:id="@+id/bannerView"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_160"
+                        app:banner_auto_loop="true"
+                        app:banner_indicator_normal_color="#88FFFFFF"
+                        app:banner_indicator_selected_color="#FFFFCE00"
+                        app:banner_radius="@dimen/dp_0"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -57,7 +62,6 @@
                         android:layout_height="wrap_content" />
 
                 </LinearLayout>
-
 
 
             </androidx.core.widget.NestedScrollView>
