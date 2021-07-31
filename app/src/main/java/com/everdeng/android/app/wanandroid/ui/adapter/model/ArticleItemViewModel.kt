@@ -7,7 +7,8 @@ class ArticleItemViewModel: BaseRvCustomViewModelKt() {
 
     val username = ObservableField<String>()
     val title = ObservableField<String>()
+    val description = ObservableField<String>()
     val time = ObservableField<String>()
     val sort = ObservableField<String>()
-
+    val cover = ObservableField<String>()
 }

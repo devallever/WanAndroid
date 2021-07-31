@@ -17,12 +17,19 @@ class HomeViewModel : BaseViewModelKt<IBaseView>() {
     override fun onCreated() {
         layoutManager = LinearLayoutManager(mCxt)
         adapter = ArticleItemAdapter()
-        for (i in 0..10) {
+        for (i in 0..15) {
             val articleItem = ArticleItem()
             articleItem.title = "标题: $i"
             articleItem.user = "user: $i"
             articleItem.time = System.currentTimeMillis().toString()
             articleItem.sort = "分类:$i"
+            if (i % 3 == 0) {
+                articleItem.type = 1
+                articleItem.cover = "http://dingyue.ws.126.net/2019/02/11/7d72ff294f114e6d86f1f6b3a6df83bb.jpeg"
+                articleItem.description = "描述$i"
+            } else {
+                articleItem.type = 0
+            }
             mArticleItemList.add(articleItem)
         }
         articleItemListLiveData.value = mArticleItemList

@@ -46,17 +46,41 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tvUser" />
 
+            <ImageView
+                android:id="@+id/ivCover"
+                srcRes="@{articleItemViewModel.cover}"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_60"
+                android:layout_marginTop="@dimen/dp_10"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintLeft_toLeftOf="@+id/tvUser"
+                app:layout_constraintTop_toBottomOf="@+id/tvUser" />
+
             <TextView
                 android:id="@+id/tvTitle"
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginLeft="@dimen/dp_10"
                 android:maxLines="2"
                 android:text="@{articleItemViewModel.title, default = 标题}"
                 android:textColor="@color/black"
-                app:layout_constraintLeft_toLeftOf="@+id/tvUser"
+                app:layout_constraintLeft_toRightOf="@+id/ivCover"
                 app:layout_constraintRight_toRightOf="@+id/tvTime"
-                app:layout_constraintTop_toBottomOf="@+id/tvTime" />
+                app:layout_constraintTop_toTopOf="@+id/ivCover" />
+
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_5"
+                android:maxLines="2"
+                android:text="@{articleItemViewModel.description, default = 描述}"
+                app:layout_constraintLeft_toRightOf="@+id/ivCover"
+                app:layout_constraintRight_toRightOf="@+id/tvTime"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
 
             <TextView
                 android:id="@+id/tvSort"
@@ -73,11 +97,11 @@
                 android:layout_width="@dimen/dp_24"
                 android:layout_height="@dimen/dp_24"
                 android:layout_marginLeft="@dimen/dp_5"
-                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_5"
                 android:layout_marginRight="@dimen/dp_5"
                 android:src="@mipmap/ic_launcher"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/ivCover" />
 
             <View
                 android:id="@+id/bottomView"

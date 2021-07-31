@@ -7,4 +7,7 @@ class ArticleItem() {
     var time: String = ""
     var sort: String = ""
     var liked: Boolean = false
+    var description: String = ""
+    var cover: String = ""
+    var type: Int = 0
 }
