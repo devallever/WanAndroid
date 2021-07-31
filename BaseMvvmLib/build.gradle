@@ -50,19 +50,22 @@ dependencies {
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
 
 
-    // 基础依赖包，必须要依赖
-    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
-    // fragment快速实现（可选）
-    implementation 'com.gyf.immersionbar:immersionbar-components:3.0.0'
-    //分包
-    implementation 'com.android.support:multidex:1.0.3'
-    //glide
+    //刘海屏
+    api 'com.gyf.immersionbar:immersionbar:3.0.0'
+    //刘海屏-fragment
+    api 'com.gyf.immersionbar:immersionbar-components:3.0.0'
+    //分包 - 
+    api 'com.android.support:multidex:1.0.3'
+    //图片加载 - Glide
     api 'com.github.bumptech.glide:glide:4.10.0'
     api 'com.github.bumptech.glide:compiler:4.4.0'
-    //eventBus
+    //事件总线 - EventBus
     api 'org.greenrobot:eventbus:3.1.1'
-    //网络请求
-    implementation project(path: ':Net')
+    //网络请求 - Retrofit
+    api project(path: ':Net')
+
+    //数据存储-MMKV: https://github.com/Tencent/MMKV
+    api 'com.tencent:mmkv-static:1.2.10'
 
 
 

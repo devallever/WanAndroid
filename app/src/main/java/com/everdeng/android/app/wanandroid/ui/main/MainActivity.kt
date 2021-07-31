@@ -11,13 +11,17 @@ import com.everdeng.android.app.wanandroid.ui.main.model.MainViewModel
 import com.everdeng.android.app.wanandroid.util.Utils
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.xm.lib.base.config.DataBindingConfig
+import com.xm.lib.util.CoroutineHelper
 import com.xm.lib.util.log
+import kotlinx.coroutines.launch
 
 class MainActivity : BaseDataActivity2<ActivityMainBinding, MainViewModel>() {
 
 
     override fun initDataAndEvent() {
-        Utils.test()
+        CoroutineHelper.ioCoroutine.launch {
+            Utils.test()
+        }
 
         val navView: BottomNavigationView = mBinding.navView
 
@@ -42,6 +46,8 @@ class MainActivity : BaseDataActivity2<ActivityMainBinding, MainViewModel>() {
     }
 
     override fun destroyView() {
+        CoroutineHelper.cancelAll()
+
     }
 
     override fun initDataBindingConfig() =

@@ -13,8 +13,11 @@ object CoroutineHelper {
         CoroutineScope(Dispatchers.Main + mJob)
     }
 
+    val ioCoroutine by lazy {
+        CoroutineScope(Dispatchers.IO + mJob)
+    }
+
     fun cancelAll() {
         mJob.cancel()
     }
-
 }
