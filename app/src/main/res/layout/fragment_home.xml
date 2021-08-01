@@ -21,7 +21,8 @@
             android:layout_height="?actionBarSize"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:elevation="@dimen/dp_20">
+            app:elevation="@dimen/dp_20"
+            android:visibility="gone">
 
         </com.google.android.material.appbar.AppBarLayout>
 

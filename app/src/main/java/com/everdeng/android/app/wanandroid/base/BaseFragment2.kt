@@ -7,4 +7,7 @@ import com.xm.lib.base.ui.BaseFragmentKt
 
 abstract class BaseFragment2<DB : ViewDataBinding, VM : BaseViewModel<IBaseView>> :
     BaseFragmentKt<DB, VM>() {
+    override fun isUseImmersionBar(): Boolean {
+        return false
+    }
 }
