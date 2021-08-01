@@ -19,8 +19,7 @@ import com.everdeng.android.app.wanandroid.widget.tab.TabLayout
 import com.xm.lib.base.config.DataBindingConfig
 import com.xm.lib.manager.MeasureManager.dip2px
 
-class BaseTabActivity : BaseDataActivity2<ActivityBaseTabBinding, BaseTabViewModel>(),
-    TabLayout.OnTabSelectedListener, View.OnClickListener {
+class HomeActivity : BaseDataActivity2<ActivityBaseTabBinding, BaseTabViewModel>(), TabLayout.OnTabSelectedListener, View.OnClickListener {
 
     private val tabModel = TabViewModel()
 
