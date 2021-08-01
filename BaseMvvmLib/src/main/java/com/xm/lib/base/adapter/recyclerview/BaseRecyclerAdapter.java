@@ -11,6 +11,8 @@ import androidx.databinding.ObservableList;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
+import androidx.paging.PagingDataAdapter;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.xm.lib.manager.LifecycleManager;
@@ -26,7 +28,7 @@ import java.util.List;
  * Date: 2020/11/4 22:36
  * @description:
  */
-public abstract class BaseRecyclerAdapter<T, VH extends BaseViewHolder<T>> extends RecyclerView.Adapter<VH> {
+public abstract class BaseRecyclerAdapter<T, VH extends BaseViewHolder<T>> extends PagingDataAdapter<T, VH> {
 
     private final String TAG = BaseRecyclerAdapter.class.getSimpleName();
 
@@ -36,11 +38,18 @@ public abstract class BaseRecyclerAdapter<T, VH extends BaseViewHolder<T>> exten
     private OnItemClickedListener<T> onItemClickedListener;
     private OnItemChildViewClickedListener<T> onItemChildViewClickedListener;
 
+    public BaseRecyclerAdapter(DiffUtil.ItemCallback<T> diffCallback) {
+        super(diffCallback);
+        initObservableList();
+    }
+
     public BaseRecyclerAdapter() {
+        super(null);
         initObservableList();
     }
 
     public BaseRecyclerAdapter(List<T> mData) {
+        super(null);
         initObservableList();
         if (null != mData) {
             mObservableList.addAll(mData);
@@ -134,7 +143,7 @@ public abstract class BaseRecyclerAdapter<T, VH extends BaseViewHolder<T>> exten
      * @param position
      * @return
      */
-    public T getItem(int position) {
+    public T getItemData(int position) {
         if (null != getData() && position >= 0 && position < getData().size()) {
             return getData().get(position);
         } else {
@@ -154,6 +163,9 @@ public abstract class BaseRecyclerAdapter<T, VH extends BaseViewHolder<T>> exten
 
     @Override
     public int getItemViewType(int position) {
+        if (getData() == null) {
+            return 0;
+        }
         return registerViewType(getData().get(position), position);
     }
 

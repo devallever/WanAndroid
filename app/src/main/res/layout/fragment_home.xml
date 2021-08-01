@@ -35,9 +35,6 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvArticle"
-                rvAdapter="@{homeViewModel.adapter}"
-                rvData="@{homeViewModel.articleItemListLiveData}"
-                rvLayoutManager="@{homeViewModel.layoutManager}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

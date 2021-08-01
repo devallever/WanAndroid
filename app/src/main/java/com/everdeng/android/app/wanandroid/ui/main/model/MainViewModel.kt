@@ -19,6 +19,7 @@ class MainViewModel : BaseViewModelKt<IBaseView>() {
             .onSetting("需要手动授权")
             .request { allGranted, grantedList, deniedList ->
                 if (allGranted) {
+                    log("全部授权")
                     toast("全部授权")
                 }
             }

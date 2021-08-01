@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,6 +80,7 @@ public abstract class BaseFragment<DB extends ViewDataBinding, T extends BaseVie
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Log.d("BaseFragment", "onViewCreated: " + this.hashCode());
         this.mCxt = getActivity();
         if (isUseImmersionBar()) {
             View mTopView = getTopView();

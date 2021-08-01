@@ -70,5 +70,12 @@ dependencies {
     //权限
     api 'com.guolindev.permissionx:permissionx:1.5.0'
 
+    //paging3
+    def paging_version = "3.0.0-beta01"
+    //2.1.2
+    //3.0.0-beta01
+    api "androidx.paging:paging-runtime-ktx:$paging_version" // For Kotlin use paging-runtime-ktx
+
+
 
 }

@@ -1,6 +1,5 @@
 package com.everdeng.android.app.wanandroid.ui.main
 
-import android.view.Menu
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.everdeng.android.app.wanandroid.BR

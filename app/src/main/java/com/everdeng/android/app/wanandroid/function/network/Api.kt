@@ -1,9 +1,11 @@
 package com.everdeng.android.app.wanandroid.function.network
 
+import com.everdeng.android.app.wanandroid.function.network.response.HomePageData
 import com.xm.netmodel.impl.HttpRequestImpl
 import io.reactivex.Observable
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface Api {
 
@@ -18,6 +20,11 @@ interface Api {
             HttpRequestImpl.getRequest().createApi(Api::class.java, *classes)
         }
     }
+
+    @GET("article/list/{page}/json")
+    suspend fun getHomePageList(
+        @Path("page") page: Int
+    ): BaseResponse<HomePageData>?
 
     @GET("project/tree/json")
     fun getSortData(): Observable<SortResponse>

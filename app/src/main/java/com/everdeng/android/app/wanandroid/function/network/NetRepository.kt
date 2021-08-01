@@ -1,5 +1,7 @@
 package com.everdeng.android.app.wanandroid.function.network
 
+import com.everdeng.android.app.wanandroid.function.network.response.HomePageData
+import com.everdeng.android.app.wanandroid.function.network.response.HomePageResponse
 import com.xm.lib.util.log
 import com.xm.lib.util.loge
 import retrofit2.Response
@@ -28,6 +30,12 @@ object NetRepository {
 
     suspend fun getSortData1(): Response<BaseResponse<List<SortData>>>? {
         return apiService.getSortData1()
+    }
+
+    suspend fun getHomePageList(pageNum: Int, failureTask: (errorMsg: String) -> Unit): HomePageData? {
+        return getData(failureTask, "获取首页文章列表成功") {
+            apiService.getHomePageList(pageNum)
+        }
     }
 
     suspend fun getSortData4(failureTask: (errorMsg: String) -> Unit): List<SortData>? {
