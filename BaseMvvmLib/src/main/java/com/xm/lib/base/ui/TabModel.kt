@@ -1,4 +1,4 @@
-package com.everdeng.android.app.wanandroid.base
+package com.xm.lib.base.ui
 
 import android.graphics.drawable.Drawable
 import android.os.Build

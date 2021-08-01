@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.everdeng.android.app.wanandroid.widget.tab;
+package com.xm.lib.widget.tab;
 
 import android.os.Handler;
 import android.os.Looper;

@@ -1,4 +1,4 @@
-package com.everdeng.android.app.wanandroid.base;
+package com.xm.lib.widget.viewpager;
 
 import android.content.Context;
 

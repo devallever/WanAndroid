@@ -22,7 +22,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
  * @Date: 2020/11/12 17
  * @Desc:
  */
-public class LoggingInterceptor implements HttpLoggingInterceptor.Logger {
+public class LoggingInterceptor extends BaseLoggingInterceptor {
 
     private int maxLen = 2500;
     private RequestConfig config;

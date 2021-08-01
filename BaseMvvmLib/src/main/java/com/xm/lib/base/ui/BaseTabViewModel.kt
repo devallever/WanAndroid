@@ -1,9 +1,9 @@
-package com.everdeng.android.app.wanandroid.base
+package com.xm.lib.base.ui
 
 import com.xm.lib.base.inters.IBaseView
 import com.xm.lib.base.model.BaseViewModelKt
 
-class BaseTabViewModel: BaseViewModelKt<IBaseView>() {
+open class BaseTabViewModel: BaseViewModelKt<IBaseView>() {
     override fun onCreated() {
 
     }

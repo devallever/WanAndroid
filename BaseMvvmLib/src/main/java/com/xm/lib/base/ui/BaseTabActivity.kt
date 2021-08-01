@@ -1,25 +1,22 @@
-package com.everdeng.android.app.wanandroid.base
+package com.xm.lib.base.ui
 
 import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
-import com.everdeng.android.app.wanandroid.BR
-import com.everdeng.android.app.wanandroid.R
-import com.everdeng.android.app.wanandroid.databinding.ActivityBaseTabBinding
-import com.everdeng.android.app.wanandroid.ui.home.HomeFragment
-import com.everdeng.android.app.wanandroid.ui.mine.MineFragment
-import com.everdeng.android.app.wanandroid.ui.project.ProjectFragment
-import com.everdeng.android.app.wanandroid.ui.qa.QAFragment
-import com.everdeng.android.app.wanandroid.ui.system.SystemFragment
-import com.everdeng.android.app.wanandroid.widget.tab.TabLayout
+import com.xm.lib.BR
+import com.xm.lib.R
 import com.xm.lib.base.config.DataBindingConfig
+import com.xm.lib.databinding.ActivityBaseTabBinding
 import com.xm.lib.manager.MeasureManager.dip2px
+import com.xm.lib.widget.tab.TabLayout
+import com.xm.lib.widget.viewpager.ViewPagerAdapter
 
-class HomeActivity : BaseDataActivity2<ActivityBaseTabBinding, BaseTabViewModel>(), TabLayout.OnTabSelectedListener, View.OnClickListener {
+abstract class BaseTabActivity<DB: ViewDataBinding, VM: BaseTabViewModel> : BaseDataActivityKt<ActivityBaseTabBinding, VM>(), TabLayout.OnTabSelectedListener, View.OnClickListener {
 
     private val tabModel = TabViewModel()
 
@@ -51,29 +48,14 @@ class HomeActivity : BaseDataActivity2<ActivityBaseTabBinding, BaseTabViewModel>
     }
 
     private fun initViewPagerData() {
-        val MAIN = Tab(HomeFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_home)
-        val SYSTEM = Tab(SystemFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_system)
-        val PROJECT = Tab(SystemFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_project)
-        val QA = Tab(QAFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_qa)
-        val MINE = Tab(SystemFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_mine)
-        val tabList = mutableListOf<Tab>()
-        tabList.add(MAIN)
-        tabList.add(SYSTEM)
-        tabList.add(PROJECT)
-        tabList.add(QA)
-        tabList.add(MINE)
-        tabModel.initTab(tabList)
+        tabModel.initTab(getTabModel())
 
-        mFragmentList.add(HomeFragment())
-        mFragmentList.add(SystemFragment())
-        mFragmentList.add(ProjectFragment())
-        mFragmentList.add(QAFragment())
-        mFragmentList.add(MineFragment())
+        mFragmentList.addAll(getFragmentList())
         mViewPagerAdapter = ViewPagerAdapter(supportFragmentManager, this, mFragmentList)
     }
 
     private fun initViewPager() {
-        mBinding.viewPager.offscreenPageLimit = 3
+        mBinding.viewPager.offscreenPageLimit = tabModel.tabCount
         mBinding.viewPager.adapter = mViewPagerAdapter
 
         mBinding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
@@ -136,7 +118,7 @@ class HomeActivity : BaseDataActivity2<ActivityBaseTabBinding, BaseTabViewModel>
 
 
     override fun onTabSelected(tab: TabLayout.Tab) {
-        mBinding.viewPager.currentItem = tab.position
+        mBinding.viewPager.setCurrentItem(tab.position, false)
 
         tabModel.selectedTab = (tab.tag as Tab)
         for (i in 0 until mBinding.tabLayout.tabCount) {
@@ -169,5 +151,8 @@ class HomeActivity : BaseDataActivity2<ActivityBaseTabBinding, BaseTabViewModel>
         return view
     }
 
+
+    abstract fun getTabModel(): MutableList<Tab>
+    abstract fun getFragmentList(): MutableList<Fragment>
 
  }
