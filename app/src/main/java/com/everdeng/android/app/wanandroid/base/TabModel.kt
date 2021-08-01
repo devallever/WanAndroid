@@ -1,70 +1,20 @@
-/*
- * Copyright (C) 2015 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.everdeng.android.app.wanandroid.base
 
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.View.LAYOUT_DIRECTION_RTL
+import android.view.View
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import com.everdeng.android.app.wanandroid.R
-import com.everdeng.android.app.wanandroid.ui.home.HomeFragment
-import com.everdeng.android.app.wanandroid.ui.qa.QAFragment
-import com.everdeng.android.app.wanandroid.ui.system.SystemFragment
 import java.util.*
 
-/**
- * All tab data is accessed via this model.
- */
-internal object TabModel {
+class TabViewModel {
 
-    /**
-     * Identifies each of the primary tabs within the application.
-     */
-    enum class Tab private constructor(
-        fragmentClass: Class<*>,
-        @param:DrawableRes @field:DrawableRes @get:DrawableRes val iconResId: Int,
-        @param:StringRes @field:StringRes @get:StringRes
-        val labelResId: Int,
-        val bundle: Bundle? = null
-    ) {
-        /**
-         *
-         */
-        MAIN(HomeFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_home),
-        SYSTEM(SystemFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_system),
-        PROJECT(SystemFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_project),
-        QA(QAFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_qa),
-        MINE(SystemFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_mine);
+    val tabList: MutableList<Tab> = mutableListOf()
 
-
-        val fragmentClassName: String
-        var drawable: Drawable? = null
-
-        init {
-            fragmentClassName = fragmentClass.name
-
-//            if (labelResId == R.string.tab_name_history) {
-//                bundle?.putIntegerArrayList(HistoryFragment.EXTRA_HISTORY_ITEM_TYPE, arrayListOf(HistoryFragment.HISTORY_TYPE_SCAN, HistoryFragment.HISTORY_TYPE_GENERATE))
-//                bundle?.putBoolean(HistoryFragment.EXTRA_HISTORY_SHOW_TAGS, true)
-//            }
-        }
+    fun initTab(tabList: MutableList<Tab>) {
+        this.tabList.addAll(tabList)
     }
 
     /**
@@ -80,19 +30,22 @@ internal object TabModel {
     /**
      * The scrolled-to-top state of each tab.
      */
-    private val mTabScrolledToTop = BooleanArray(Tab.values().size)
+    private val mTabScrolledToTop = BooleanArray(tabList.size)
 
     /**
      * An enumerated value indicating the currently selected tab.
      */
-    private var mSelectedTab: Tab =
-        Tab.MAIN
+    private var mSelectedTab: Tab? = if (tabList.isEmpty()) {
+        null
+    } else {
+        tabList[0]
+    }
 
     /**
      * @return the number of tabs
      */
     val tabCount: Int
-        get() = Tab.values().size
+        get() = tabList.size
 
     /**
      * @return an enumerated value indicating the currently selected primary tab
@@ -102,28 +55,31 @@ internal object TabModel {
      */
     // Notify of the tab change.
     // Notify of the vertical scroll position change if there is one.
-    var selectedTab: Tab
+    var selectedTab: Tab?
         get() {
             return mSelectedTab
         }
         set(tab) {
             val oldSelectedTab = selectedTab
-            if (oldSelectedTab != tab) {
-                mSelectedTab = tab
-                for (tl in mTabListeners) {
-                    tl.selectedTabChanged(oldSelectedTab, tab)
-                }
-                val tabScrolledToTop =
-                    isTabScrolledToTop(tab)
-                if (isTabScrolledToTop(
-                        oldSelectedTab!!
-                    ) != tabScrolledToTop
-                ) {
-                    for (tsl in mTabScrollListeners) {
-                        tsl.selectedTabScrollToTopChanged(tab, tabScrolledToTop)
+            oldSelectedTab?.let {
+                if (oldSelectedTab != tab) {
+                    mSelectedTab = tab
+                    for (tl in mTabListeners) {
+                        tl.selectedTabChanged(oldSelectedTab, tab)
+                    }
+                    val tabScrolledToTop =
+                        isTabScrolledToTop(tab)
+                    if (isTabScrolledToTop(
+                            oldSelectedTab!!
+                        ) != tabScrolledToTop
+                    ) {
+                        for (tsl in mTabScrollListeners) {
+                            tsl.selectedTabScrollToTopChanged(tab, tabScrolledToTop)
+                        }
                     }
                 }
             }
+
         }
 
 
@@ -154,7 +110,7 @@ internal object TabModel {
      * @return the tab at the given `ordinal`
      */
     fun getTab(ordinal: Int): Tab {
-        return Tab.values()[ordinal]
+        return tabList[ordinal]
     }
 
     /**
@@ -165,7 +121,7 @@ internal object TabModel {
         val ordinal: Int
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && TextUtils.getLayoutDirectionFromLocale(
                 Locale.getDefault()
-            ) == LAYOUT_DIRECTION_RTL
+            ) == View.LAYOUT_DIRECTION_RTL
         ) {
             ordinal = tabCount - position - 1
         } else {
@@ -200,7 +156,7 @@ internal object TabModel {
      */
     fun setTabScrolledToTop(tab: Tab, scrolledToTop: Boolean) {
         if (isTabScrolledToTop(tab) != scrolledToTop) {
-            mTabScrolledToTop[tab.ordinal] = scrolledToTop
+            mTabScrolledToTop[tabList.indexOf(tab)] = scrolledToTop
             if (tab == selectedTab) {
                 for (tsl in mTabScrollListeners) {
                     tsl.selectedTabScrollToTopChanged(tab, scrolledToTop)
@@ -213,8 +169,8 @@ internal object TabModel {
      * @param tab identifies the tab
      * @return `true` iff the content in the given `tab` is currently scrolled to top
      */
-    fun isTabScrolledToTop(tab: Tab): Boolean {
-        return mTabScrolledToTop[tab.ordinal]
+    fun isTabScrolledToTop(tab: Tab?): Boolean {
+        return mTabScrolledToTop[tabList.indexOf(tab)]
     }
 
 
@@ -224,7 +180,7 @@ internal object TabModel {
          * @param selectedTab   an enumerated value indicating the current selected tab
          * @param scrolledToTop indicates whether the current selected tab is scrolled to its top
          */
-        fun selectedTabScrollToTopChanged(selectedTab: Tab, scrolledToTop: Boolean)
+        fun selectedTabScrollToTopChanged(selectedTab: Tab?, scrolledToTop: Boolean)
     }
 
     interface TabListener {
@@ -233,6 +189,27 @@ internal object TabModel {
          * @param oldSelectedTab an enumerated value indicating the prior selected tab
          * @param newSelectedTab an enumerated value indicating the newly selected tab
          */
-        fun selectedTabChanged(oldSelectedTab: Tab?, newSelectedTab: Tab)
+        fun selectedTabChanged(oldSelectedTab: Tab?, newSelectedTab: Tab?)
+    }
+
+}
+
+data class Tab(val fragmentClass: Class<*>,
+                   @param:DrawableRes @field:DrawableRes @get:DrawableRes val iconResId: Int,
+                   @param:StringRes @field:StringRes @get:StringRes
+                   val labelResId: Int,
+                   val bundle: Bundle? = null
+) {
+
+    val fragmentClassName: String
+    var drawable: Drawable? = null
+
+    init {
+        fragmentClassName = fragmentClass.name
+
+//            if (labelResId == R.string.tab_name_history) {
+//                bundle?.putIntegerArrayList(HistoryFragment.EXTRA_HISTORY_ITEM_TYPE, arrayListOf(HistoryFragment.HISTORY_TYPE_SCAN, HistoryFragment.HISTORY_TYPE_GENERATE))
+//                bundle?.putBoolean(HistoryFragment.EXTRA_HISTORY_SHOW_TAGS, true)
+//            }
     }
 }

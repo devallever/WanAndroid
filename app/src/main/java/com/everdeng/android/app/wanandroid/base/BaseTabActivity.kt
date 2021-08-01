@@ -22,6 +22,8 @@ import com.xm.lib.manager.MeasureManager.dip2px
 class BaseTabActivity : BaseDataActivity2<ActivityBaseTabBinding, BaseTabViewModel>(),
     TabLayout.OnTabSelectedListener, View.OnClickListener {
 
+    private val tabModel = TabViewModel()
+
     private lateinit var mViewPagerAdapter: ViewPagerAdapter
     private var mainTabHighlight = 0
     private var mainTabUnSelectColor = 0
@@ -50,6 +52,19 @@ class BaseTabActivity : BaseDataActivity2<ActivityBaseTabBinding, BaseTabViewMod
     }
 
     private fun initViewPagerData() {
+        val MAIN = Tab(HomeFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_home)
+        val SYSTEM = Tab(SystemFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_system)
+        val PROJECT = Tab(SystemFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_project)
+        val QA = Tab(QAFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_qa)
+        val MINE = Tab(SystemFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_mine)
+        val tabList = mutableListOf<Tab>()
+        tabList.add(MAIN)
+        tabList.add(SYSTEM)
+        tabList.add(PROJECT)
+        tabList.add(QA)
+        tabList.add(MINE)
+        tabModel.initTab(tabList)
+
         mFragmentList.add(HomeFragment())
         mFragmentList.add(SystemFragment())
         mFragmentList.add(ProjectFragment())
@@ -71,7 +86,7 @@ class BaseTabActivity : BaseDataActivity2<ActivityBaseTabBinding, BaseTabViewMod
             }
 
             override fun onPageSelected(position: Int) {
-                mBinding.tvTitle.text = getStringRes(TabModel.getTab(position).labelResId)
+                mBinding.tvTitle.text = getStringRes(tabModel.getTab(position).labelResId)
             }
 
             override fun onPageScrollStateChanged(state: Int) {}
@@ -91,9 +106,9 @@ class BaseTabActivity : BaseDataActivity2<ActivityBaseTabBinding, BaseTabViewMod
         mBinding.viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(mBinding.tabLayout))
         mBinding.tabLayout.setOnTabSelectedListener(this)
 
-        val tabCount = TabModel.tabCount
+        val tabCount = tabModel.tabCount
         for (i in 0 until tabCount) {
-            val tabModel = TabModel.getTab(i)
+            val tabModel = tabModel.getTab(i)
             val labelId = tabModel.labelResId
             val tab = mBinding.tabLayout.newTab()
                 .setTag(tabModel)
@@ -124,7 +139,7 @@ class BaseTabActivity : BaseDataActivity2<ActivityBaseTabBinding, BaseTabViewMod
     override fun onTabSelected(tab: TabLayout.Tab) {
         mBinding.viewPager.currentItem = tab.position
 
-        TabModel.selectedTab = (tab.tag as TabModel.Tab)
+        tabModel.selectedTab = (tab.tag as Tab)
         for (i in 0 until mBinding.tabLayout.tabCount) {
             val aTab = mBinding.tabLayout.getTabAt(i)
             if (aTab != null) {
@@ -149,7 +164,7 @@ class BaseTabActivity : BaseDataActivity2<ActivityBaseTabBinding, BaseTabViewMod
         val view = LayoutInflater.from(this).inflate(R.layout.layout_bottom_tab, null)
         val imageView = view.findViewById<ImageView>(R.id.icon)
         val textView = view.findViewById<TextView>(R.id.text1)
-        val tab = TabModel.getTab(position)
+        val tab = tabModel.getTab(position)
         textView.setText(tab.labelResId)
         imageView.setImageResource(tab.iconResId)
         return view
