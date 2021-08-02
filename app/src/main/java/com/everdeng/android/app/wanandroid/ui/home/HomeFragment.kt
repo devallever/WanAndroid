@@ -1,5 +1,6 @@
 package com.everdeng.android.app.wanandroid.ui.home
 
+import android.view.View
 import androidx.lifecycle.viewModelScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.DiffUtil
@@ -13,6 +14,7 @@ import com.everdeng.android.app.wanandroid.ui.adapter.FooterAdapter
 import com.everdeng.android.app.wanandroid.ui.adapter.bean.ArticleItem
 import com.everdeng.android.app.wanandroid.ui.home.adapter.HomeHeaderAdapter
 import com.everdeng.android.app.wanandroid.ui.home.model.HomeViewModel
+import com.xm.lib.base.adapter.recyclerview.BaseRecyclerAdapter
 import com.xm.lib.base.config.DataBindingConfig
 import com.xm.lib.manager.engine.LoadGlide
 import com.xm.lib.util.log
@@ -48,6 +50,10 @@ class HomeFragment : BaseFragment2<FragmentHomeBinding, HomeViewModel>() {
             header = HomeHeaderAdapter(),
             footer = FooterAdapter()
         )
+        mViewModel.adapter.setOnItemClickedListener { v, position, data ->
+            val item = data as ArticleItem
+            log("type = ${item.type}")
+        }
 
         mViewModel.viewModelScope.launch {
             mViewModel.adapter.loadStateFlow.collectLatest { loadStates ->

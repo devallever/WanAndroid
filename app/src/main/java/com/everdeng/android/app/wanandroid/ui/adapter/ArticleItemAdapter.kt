@@ -7,16 +7,21 @@ import com.everdeng.android.app.wanandroid.ui.adapter.view.ArticleItemImgView
 import com.everdeng.android.app.wanandroid.ui.adapter.view.ArticleItemView
 import com.xm.lib.base.adapter.recyclerview.BaseRecyclerAdapter
 import com.xm.lib.base.adapter.recyclerview.BaseViewHolder
+import com.xm.lib.util.log
 
 class ArticleItemAdapter(diffCallback: DiffUtil.ItemCallback<ArticleItem>) : BaseRecyclerAdapter<ArticleItem, BaseViewHolder<ArticleItem>>(diffCallback) {
     override fun bindViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder<ArticleItem> =
         BaseViewHolder(if (viewType == 0) {
+            log("bindViewHolder: viewType = $viewType")
             ArticleItemView(mContext)
         } else {
+            log("bindViewHolder: viewType = $viewType")
             ArticleItemImgView(mContext)
         })
 
     override fun registerViewType(data: ArticleItem?, position: Int): Int {
-        return data?.type?:0
+        val itemType = data?.type?:0
+        log("registerViewType: itemType = $itemType")
+        return itemType
     }
 }

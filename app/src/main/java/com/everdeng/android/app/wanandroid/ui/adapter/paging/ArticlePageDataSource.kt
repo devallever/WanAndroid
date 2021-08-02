@@ -8,15 +8,16 @@ import com.xm.lib.util.log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class ArticlePageDataSourde: PagingSource<Int, ArticleItem>() {
+class ArticlePageDataSource: PagingSource<Int, ArticleItem>() {
 
+    private val START_NUM = 0
     private var pageCount = 1
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ArticleItem> {
-        log("load ${params.key}")
-        val currentLoadingPageKey = params.key ?: 1
+        val currentLoadingPageKey = params.key ?: START_NUM
+        log("load $currentLoadingPageKey")
 
-        val prevKey = if (currentLoadingPageKey == 1) null else currentLoadingPageKey - 1
+        val prevKey = if (currentLoadingPageKey == START_NUM) null else currentLoadingPageKey - 1
 
         val dataList = getData(currentLoadingPageKey)
         //如果没有了数据， next传null就好了
@@ -38,7 +39,7 @@ class ArticlePageDataSourde: PagingSource<Int, ArticleItem>() {
     override fun getRefreshKey(state: PagingState<Int, ArticleItem>): Int? {
         //调动 adapter.refresh() 之后
         log("getRefreshKey")
-        return 1
+        return START_NUM
     }
 
     private suspend fun getData(pageNum: Int) = withContext(Dispatchers.IO) {
@@ -51,9 +52,19 @@ class ArticlePageDataSourde: PagingSource<Int, ArticleItem>() {
         dataList?.map {
             val articleItem = ArticleItem()
             articleItem.title = it.title
-            articleItem.user = it.author
+            articleItem.user = when {
+                it.author.isNotEmpty() -> {
+                    it.author
+                }
+                it.shareUser.isNotEmpty() -> {
+                    it.shareUser
+                }
+                else -> {
+                    ""
+                }
+            }
             articleItem.time = it.publishTime.toString()
-            articleItem.sort = it.courseId.toString()
+            articleItem.sort = "${it.superChapterName} - ${it.chapterName}"
             if (it.envelopePic.isEmpty()) {
                 articleItem.type = 0
             } else {
@@ -61,6 +72,7 @@ class ArticlePageDataSourde: PagingSource<Int, ArticleItem>() {
                 articleItem.cover = it.envelopePic
                 articleItem.description = it.desc
             }
+//            log("${it.title} - cover: ${it.envelopePic}")
             result.add(articleItem)
         }
         return@withContext result

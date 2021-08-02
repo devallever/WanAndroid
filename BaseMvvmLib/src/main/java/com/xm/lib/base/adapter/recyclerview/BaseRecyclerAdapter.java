@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.xm.lib.manager.LifecycleManager;
 import com.xm.lib.manager.LogPrint;
+import com.xm.lib.util.LogUtilsKt;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -264,11 +265,11 @@ public abstract class BaseRecyclerAdapter<T, VH extends BaseViewHolder<T>> exten
 
     public interface OnItemClickedListener<T> {
         //        void onItemClicked(BaseRecyclerAdapter rvAdapter, View v, int position);
-        void onItemClicked(View v, int position, T mData);
+        void onItemClicked(View v, int position, T item);
     }
 
     public interface OnItemChildViewClickedListener<T> {
         //        void onChildViewClicked(BaseRecyclerAdapter rvAdapter, View v, int position);
-        void onChildViewClicked(View v, int position, T mData);
+        void onChildViewClicked(View v, int position, T item);
     }
 }
