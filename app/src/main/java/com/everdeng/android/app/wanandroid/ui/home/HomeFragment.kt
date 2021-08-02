@@ -50,9 +50,9 @@ class HomeFragment : BaseFragment2<FragmentHomeBinding, HomeViewModel>() {
             header = HomeHeaderAdapter(),
             footer = FooterAdapter()
         )
+
         mViewModel.adapter.setOnItemClickedListener { v, position, data ->
-            val item = data as ArticleItem
-            log("type = ${item.type}")
+            log("type = ${data.type}")
         }
 
         mViewModel.viewModelScope.launch {

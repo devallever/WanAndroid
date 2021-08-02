@@ -8,18 +8,10 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableArrayList;
 import androidx.databinding.ObservableList;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.paging.PagingDataAdapter;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.xm.lib.manager.LifecycleManager;
-import com.xm.lib.manager.LogPrint;
-import com.xm.lib.util.LogUtilsKt;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,9 +30,11 @@ public abstract class BaseRecyclerAdapter<T, VH extends BaseViewHolder<T>> exten
     protected RecyclerView mRvView;
     private OnItemClickedListener<T> onItemClickedListener;
     private OnItemChildViewClickedListener<T> onItemChildViewClickedListener;
+    private boolean usePaging = false;
 
     public BaseRecyclerAdapter(DiffUtil.ItemCallback<T> diffCallback) {
         super(diffCallback);
+        usePaging = true;
         initObservableList();
     }
 
@@ -126,6 +120,10 @@ public abstract class BaseRecyclerAdapter<T, VH extends BaseViewHolder<T>> exten
 
     @Override
     public int getItemCount() {
+        if (usePaging) {
+            //使用分页这个返回值无效
+            return 0;
+        }
         return null == getData() || getData().isEmpty() ? 0 : getData().size();
     }
 
@@ -145,6 +143,10 @@ public abstract class BaseRecyclerAdapter<T, VH extends BaseViewHolder<T>> exten
      * @return
      */
     public T getItemData(int position) {
+        if (usePaging) {
+            return getItem(position);
+        }
+
         if (null != getData() && position >= 0 && position < getData().size()) {
             return getData().get(position);
         } else {
@@ -164,6 +166,9 @@ public abstract class BaseRecyclerAdapter<T, VH extends BaseViewHolder<T>> exten
 
     @Override
     public int getItemViewType(int position) {
+        if(usePaging) {
+            return registerViewType(getItem(position), position);
+        }
         if (getData() == null) {
             return 0;
         }
@@ -231,11 +236,11 @@ public abstract class BaseRecyclerAdapter<T, VH extends BaseViewHolder<T>> exten
         mObservableList.addAll(mData);
     }
 
-    public void setOnItemClickedListener(OnItemClickedListener onItemClickedListener) {
+    public void setOnItemClickedListener(OnItemClickedListener<T> onItemClickedListener) {
         this.onItemClickedListener = onItemClickedListener;
     }
 
-    public void setOnItemChildViewClickedListener(OnItemChildViewClickedListener onItemChildViewClickedListener) {
+    public void setOnItemChildViewClickedListener(OnItemChildViewClickedListener<T> onItemChildViewClickedListener) {
         this.onItemChildViewClickedListener = onItemChildViewClickedListener;
     }
 
@@ -270,6 +275,6 @@ public abstract class BaseRecyclerAdapter<T, VH extends BaseViewHolder<T>> exten
 
     public interface OnItemChildViewClickedListener<T> {
         //        void onChildViewClicked(BaseRecyclerAdapter rvAdapter, View v, int position);
-        void onChildViewClicked(View v, int position, T item);
+        void onChildViewClicked(View v, int position, T ittem);
     }
 }
