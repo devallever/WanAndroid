@@ -28,5 +28,8 @@ class ArticleItemImgView @JvmOverloads constructor(
         mViewModel.username.set(data?.user)
         mViewModel.description.set(data?.description)
         mViewModel.cover.set(data?.cover)
+        mItemView.setOnClickListener {
+            adapter?.callItemClicked(it, position)
+        }
     }
 }

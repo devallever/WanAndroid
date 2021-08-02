@@ -26,5 +26,8 @@ class ArticleItemView @JvmOverloads constructor(
         mViewModel.time.set(data?.time)
         mViewModel.title.set(data?.title)
         mViewModel.username.set(data?.user)
+        mItemView.setOnClickListener {
+            adapter?.callItemClicked(it, position)
+        }
     }
 }

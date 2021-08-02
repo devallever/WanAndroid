@@ -6,6 +6,7 @@ import com.everdeng.android.app.wanandroid.function.network.NetRepository
 import com.everdeng.android.app.wanandroid.ui.adapter.bean.ArticleItem
 import com.xm.lib.util.log
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
 class ArticlePageDataSource: PagingSource<Int, ArticleItem>() {
@@ -40,6 +41,28 @@ class ArticlePageDataSource: PagingSource<Int, ArticleItem>() {
         //调动 adapter.refresh() 之后
         log("getRefreshKey")
         return START_NUM
+    }
+
+    private suspend fun getTestData(page: Int) = withContext(Dispatchers.IO) {
+        delay(2000)
+        pageCount = 100
+        val result = mutableListOf<ArticleItem>()
+        for (i in 0..20) {
+            val articleItem = ArticleItem()
+            articleItem.title = "标题$i"
+            articleItem.user = "作者$i"
+            articleItem.time = "时间$i"
+            articleItem.sort = "分类$i"
+            if (i % 3 == 0) {
+                articleItem.type = 0
+            } else {
+                articleItem.type = 1
+                articleItem.cover = ""
+                articleItem.description = "描述$i"
+            }
+            result.add(articleItem)
+        }
+        return@withContext result
     }
 
     private suspend fun getData(pageNum: Int) = withContext(Dispatchers.IO) {

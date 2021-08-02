@@ -32,12 +32,18 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/topBar">
+            app:layout_constraintTop_toBottomOf="@+id/topBar"
+            refreshStatus="@{homeViewModel.refreshStatus}">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvArticle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                rv_adapter="@{homeViewModel.adapter}"
+                rv_layoutManager="@{homeViewModel.layoutManager}"
+                usePaging="@{homeViewModel.usePaging}"
+                footerAdapter="@{homeViewModel.footerAdapter}"
+                scrollToPosition="@{homeViewModel.scrollToPosition}"/>
 
 
             <com.youth.banner.Banner
@@ -62,6 +68,7 @@
             android:src="@drawable/ic_home_black_24dp"
             android:backgroundTint="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            android:onClick="@{() -> homeViewModel.onClickScrollTop()}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

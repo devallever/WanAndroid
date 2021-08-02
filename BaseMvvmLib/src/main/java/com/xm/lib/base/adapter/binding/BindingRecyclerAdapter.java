@@ -1,9 +1,11 @@
 package com.xm.lib.base.adapter.binding;
 
+import androidx.paging.LoadStateAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.xm.lib.base.adapter.recyclerview.BaseRecyclerAdapter;
 import com.xm.lib.manager.LogPrint;
+import com.xm.lib.util.LogUtilsKt;
 
 import java.util.List;
 
@@ -51,6 +53,21 @@ public class BindingRecyclerAdapter {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         adapter.setRecyclerView(recyclerView);
+    }
+
+    public static void setupPagingRecyclerView(RecyclerView recyclerView, BaseRecyclerAdapter adapter, RecyclerView.LayoutManager layoutManager, boolean usePaging, LoadStateAdapter footerAdapter) {
+        LogUtilsKt.log("setupPagingRecyclerView");
+        if (null == adapter) {
+            LogUtilsKt.log("adapter == null");
+            return;
+        }
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter.withLoadStateFooter(footerAdapter));
+        adapter.setRecyclerView(recyclerView);
+    }
+
+    public static void scrollToPosition(RecyclerView recyclerView, int position) {
+        recyclerView.scrollToPosition(position);
     }
 
 }
