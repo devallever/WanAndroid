@@ -8,6 +8,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.everdeng.android.app.wanandroid.R
 import com.everdeng.android.app.wanandroid.ui.adapter.ArticleItemAdapter
 import com.everdeng.android.app.wanandroid.ui.adapter.FooterAdapter
 import com.everdeng.android.app.wanandroid.ui.adapter.bean.ArticleItem
@@ -23,6 +24,7 @@ import kotlinx.coroutines.launch
 class HomeViewModel : BaseViewModelKt<IBaseView>() {
 
     private val homePageDataList by lazy {
+        //pageSize根据接口每页数量而定
         Pager(PagingConfig(pageSize = 20)) {
             ArticlePageDataSource()
         }.flow.cachedIn(viewModelScope)
@@ -50,6 +52,14 @@ class HomeViewModel : BaseViewModelKt<IBaseView>() {
         footerAdapter = FooterAdapter()
         adapter.setOnItemClickedListener { v, position, data ->
             toast(data.title)
+        }
+        adapter.setOnItemChildViewClickedListener { v, position, ittem ->
+            when(v.id){
+                R.id.ivLike -> {
+                    toast("like")
+                    adapter.notifyItemChanged(position, position)
+                }
+            }
         }
 
         viewModelScope.launch {

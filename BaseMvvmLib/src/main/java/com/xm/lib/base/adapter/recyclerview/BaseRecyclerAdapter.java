@@ -275,6 +275,6 @@ public abstract class BaseRecyclerAdapter<T, VH extends BaseViewHolder<T>> exten
 
     public interface OnItemChildViewClickedListener<T> {
         //        void onChildViewClicked(BaseRecyclerAdapter rvAdapter, View v, int position);
-        void onChildViewClicked(View v, int position, T ittem);
+        void onChildViewClicked(View v, int position, T item);
     }
 }

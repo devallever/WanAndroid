@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import com.everdeng.android.app.wanandroid.BR
 import com.everdeng.android.app.wanandroid.R
+import com.everdeng.android.app.wanandroid.databinding.RvArticleItemBinding
 import com.everdeng.android.app.wanandroid.ui.adapter.bean.ArticleItem
 import com.everdeng.android.app.wanandroid.ui.adapter.model.ArticleItemViewModel
 import com.xm.lib.base.adapter.recyclerview.BaseRecyclerAdapter
@@ -28,6 +29,10 @@ class ArticleItemView @JvmOverloads constructor(
         mViewModel.username.set(data?.user)
         mItemView.setOnClickListener {
             adapter?.callItemClicked(it, position)
+        }
+        val binding = getDataBinding<RvArticleItemBinding>()
+        binding.ivLike.setOnClickListener {
+            adapter?.callChildViewClicked(it, position)
         }
     }
 }
