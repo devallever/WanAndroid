@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="articleViewModel"
+            type="com.everdeng.android.app.wanandroid.ui.article.model.ArticleViewModel" />
+
+    </data>
+
+
+    <com.everdeng.android.app.wanandroid.widget.MyWebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</layout>

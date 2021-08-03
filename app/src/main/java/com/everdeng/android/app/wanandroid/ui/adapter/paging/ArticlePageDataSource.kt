@@ -62,6 +62,17 @@ class ArticlePageDataSource: BasePageSource<ArticleItem>() {
             }
             articleItem.time = TimeHelper.setTime2Format("yyyy-MM-dd HH:mm", it.publishTime)
             articleItem.sort = "${it.superChapterName} - ${it.chapterName}"
+            articleItem.articleUrl = when {
+                it.link.isNotEmpty() -> {
+                    it.link
+                }
+                it.projectLink.isNotEmpty() -> {
+                    it.projectLink
+                }
+                else -> {
+                    ""
+                }
+            }
             if (it.envelopePic.isEmpty()) {
                 articleItem.type = 0
             } else {

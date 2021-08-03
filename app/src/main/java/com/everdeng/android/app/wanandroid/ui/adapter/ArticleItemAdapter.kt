@@ -19,11 +19,11 @@ class ArticleItemAdapter(diffCallback: DiffUtil.ItemCallback<ArticleItem>) :
                     HomeBannerItemView(mContext)
                 }
                 0 -> {
-                    log("bindViewHolder: viewType = $viewType")
+//                    log("bindViewHolder: viewType = $viewType")
                     ArticleItemView(mContext)
                 }
                 else -> {
-                    log("bindViewHolder: viewType = $viewType")
+//                    log("bindViewHolder: viewType = $viewType")
                     ArticleItemImgView(mContext)
                 }
             }
@@ -31,7 +31,7 @@ class ArticleItemAdapter(diffCallback: DiffUtil.ItemCallback<ArticleItem>) :
 
     override fun registerViewType(data: ArticleItem?, position: Int): Int {
         val itemType = data?.type ?: 0
-        log("registerViewType: itemType = $itemType")
+//        log("registerViewType: itemType = $itemType")
         return itemType
     }
 }

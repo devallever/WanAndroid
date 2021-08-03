@@ -15,6 +15,7 @@ import com.everdeng.android.app.wanandroid.ui.adapter.ArticleItemAdapter
 import com.everdeng.android.app.wanandroid.ui.adapter.FooterAdapter
 import com.everdeng.android.app.wanandroid.ui.adapter.bean.ArticleItem
 import com.everdeng.android.app.wanandroid.ui.adapter.paging.ArticlePageDataSource
+import com.everdeng.android.app.wanandroid.ui.article.ArticleActivity
 import com.xm.lib.base.inters.IBaseView
 import com.xm.lib.base.model.BaseViewModelKt
 import kotlinx.coroutines.flow.collect
@@ -62,7 +63,7 @@ class HomeViewModel : BaseViewModelKt<IBaseView>() {
         adapter = ArticleItemAdapter(DIFF_CALLBACK)
         footerAdapter = FooterAdapter()
         adapter.setOnItemClickedListener { v, position, data ->
-            toast(data.title)
+            ArticleActivity.start(mCxt, data)
         }
         adapter.setOnItemChildViewClickedListener { v, position, ittem ->
             when(v.id){
