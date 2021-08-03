@@ -1,7 +1,7 @@
 package com.everdeng.android.app.wanandroid.function.network
 
+import com.everdeng.android.app.wanandroid.function.network.response.BannerData
 import com.everdeng.android.app.wanandroid.function.network.response.HomePageData
-import com.everdeng.android.app.wanandroid.function.network.response.HomePageResponse
 import com.xm.lib.util.log
 import com.xm.lib.util.loge
 import retrofit2.Response
@@ -37,6 +37,14 @@ object NetRepository {
             apiService.getHomePageList(pageNum)
         }
     }
+
+    suspend fun getBanner(failureTask: (errorMsg: String) -> Unit): List<BannerData>? {
+        return getData(failureTask, "获取首页banner成功") {
+            apiService.getBanner()
+        }
+    }
+
+
 
     suspend fun getSortData4(failureTask: (errorMsg: String) -> Unit): List<SortData>? {
         return getData(failureTask, "获取分类数据成功") {

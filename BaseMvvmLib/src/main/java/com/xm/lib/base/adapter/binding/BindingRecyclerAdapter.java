@@ -66,6 +66,18 @@ public class BindingRecyclerAdapter {
         adapter.setRecyclerView(recyclerView);
     }
 
+    public static void setupPagingRecyclerView(RecyclerView recyclerView, BaseRecyclerAdapter adapter, RecyclerView.LayoutManager layoutManager, boolean usePaging, LoadStateAdapter headerAdapter,  LoadStateAdapter footerAdapter) {
+        LogUtilsKt.log("setupPagingRecyclerView");
+        if (null == adapter) {
+            LogUtilsKt.log("adapter == null");
+            return;
+        }
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter.withLoadStateHeaderAndFooter(headerAdapter, footerAdapter));
+        adapter.setRecyclerView(recyclerView);
+    }
+
+
     public static void scrollToPosition(RecyclerView recyclerView, int position) {
         recyclerView.scrollToPosition(position);
     }

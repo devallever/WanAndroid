@@ -91,7 +91,7 @@ public abstract class BaseRvCustomView<T, VM extends BaseRvCustomViewModel> exte
     }
 
 
-    protected <VM extends ViewDataBinding> VM getDataBinding(){
+    public <VM extends ViewDataBinding> VM getDataBinding(){
         return (VM) mDataBinding;
     }
 

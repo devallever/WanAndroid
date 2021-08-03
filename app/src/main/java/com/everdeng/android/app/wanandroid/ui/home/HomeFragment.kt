@@ -19,7 +19,7 @@ class HomeFragment : BaseFragment2<FragmentHomeBinding, HomeViewModel>() {
 
     override fun initDataAndEvent() {
         log("initDataAndEvent")
-        initBanner()
+//        initBanner()
         initRefresh();
     }
 

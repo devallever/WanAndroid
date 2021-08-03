@@ -3,6 +3,7 @@ package com.everdeng.android.app.wanandroid.ui.adapter.paging
 import com.everdeng.android.app.wanandroid.function.network.NetRepository
 import com.everdeng.android.app.wanandroid.ui.adapter.bean.ArticleItem
 import com.xm.lib.base.paging.BasePageSource
+import com.xm.lib.util.TimeHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -40,6 +41,11 @@ class ArticlePageDataSource: BasePageSource<ArticleItem>() {
         }
         pageCount = response?.pageCount?:1
         val dataList = response?.datas
+        if (response?.curPage == 1) {
+            val headerItem = ArticleItem()
+            headerItem.type = -1;
+            result.add(headerItem)
+        }
         dataList?.map {
             val articleItem = ArticleItem()
             articleItem.title = it.title
@@ -54,7 +60,7 @@ class ArticlePageDataSource: BasePageSource<ArticleItem>() {
                     ""
                 }
             }
-            articleItem.time = it.publishTime.toString()
+            articleItem.time = TimeHelper.setTime2Format("yyyy-MM-dd HH:mm", it.publishTime)
             articleItem.sort = "${it.superChapterName} - ${it.chapterName}"
             if (it.envelopePic.isEmpty()) {
                 articleItem.type = 0

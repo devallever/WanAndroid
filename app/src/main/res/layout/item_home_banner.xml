@@ -7,25 +7,22 @@
     <data>
 
         <variable
-            name="data"
-            type="com.everdeng.android.app.wanandroid.ui.adapter.bean.ArticleItem" />
+            name="homeBannerViewModel"
+            type="com.everdeng.android.app.wanandroid.ui.home.adapter.model.HomeBannerItemViewModel" />
     </data>
 
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_160"
-        android:background="@color/colorPrimary">
+        android:layout_height="@dimen/dp_160">
         <com.youth.banner.Banner
             android:id="@+id/bannerView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_160"
-            android:visibility="gone"
             app:banner_auto_loop="true"
             app:banner_indicator_normal_color="#88FFFFFF"
             app:banner_indicator_selected_color="#FFFFCE00"
-            app:banner_radius="@dimen/dp_0"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:banner_radius="@dimen/dp_0"/>
 
     </FrameLayout>
 

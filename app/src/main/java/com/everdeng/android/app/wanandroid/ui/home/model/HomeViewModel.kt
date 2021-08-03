@@ -1,5 +1,6 @@
 package com.everdeng.android.app.wanandroid.ui.home.model
 
+import android.view.ViewGroup
 import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
 import androidx.paging.LoadState
@@ -8,6 +9,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.everdeng.android.app.wanandroid.R
 import com.everdeng.android.app.wanandroid.ui.adapter.ArticleItemAdapter
 import com.everdeng.android.app.wanandroid.ui.adapter.FooterAdapter
@@ -40,14 +42,23 @@ class HomeViewModel : BaseViewModelKt<IBaseView>() {
     }
 
     override fun onCreated() {
-
         initRv()
     }
 
     private fun initRv() {
         refreshStatus.set(false)
         usePaging.set(true)
-        layoutManager = LinearLayoutManager(mCxt)
+        //解决recyclerview嵌套recyclerview显示不全
+        //https://blog.csdn.net/suyimin2010/article/details/82312560
+        layoutManager = object : LinearLayoutManager(mCxt) {
+            override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams {
+                return RecyclerView.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            }
+        }
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         adapter = ArticleItemAdapter(DIFF_CALLBACK)
         footerAdapter = FooterAdapter()
         adapter.setOnItemClickedListener { v, position, data ->

@@ -1,6 +1,5 @@
 package com.everdeng.android.app.wanandroid.ui.home.adapter
 
-import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +21,7 @@ class HomeHeaderAdapter() : LoadStateAdapter<HomeHeaderAdapter.ViewHolder>() {
         parent: ViewGroup,
         loadState: LoadState
     ): ViewHolder {
-        val root = LayoutInflater.from(parent.context).inflate(R.layout.item_home_header, parent, false)
+        val root = LayoutInflater.from(parent.context).inflate(R.layout.item_home_banner, parent, false)
         return ViewHolder(root)
     }
 

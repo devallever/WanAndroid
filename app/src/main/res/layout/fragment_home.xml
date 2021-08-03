@@ -15,16 +15,17 @@
         android:layout_height="match_parent"
         tools:context=".ui.home.HomeFragment">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/topBar"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:elevation="@dimen/dp_20"
-            android:visibility="gone">
 
-        </com.google.android.material.appbar.AppBarLayout>
+        <com.youth.banner.Banner
+            android:id="@+id/bannerView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_160"
+            app:banner_auto_loop="true"
+            android:visibility="gone"
+            app:banner_indicator_normal_color="#88FFFFFF"
+            app:banner_indicator_selected_color="#FFFFCE00"
+            app:banner_radius="@dimen/dp_0"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -32,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/topBar"
+            app:layout_constraintTop_toBottomOf="@+id/bannerView"
             refreshStatus="@{homeViewModel.refreshStatus}">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -44,19 +45,6 @@
                 usePaging="@{homeViewModel.usePaging}"
                 footerAdapter="@{homeViewModel.footerAdapter}"
                 scrollToPosition="@{homeViewModel.scrollToPosition}"/>
-
-
-            <com.youth.banner.Banner
-                android:id="@+id/bannerView"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_160"
-                android:visibility="gone"
-                app:banner_auto_loop="true"
-                app:banner_indicator_normal_color="#88FFFFFF"
-                app:banner_indicator_selected_color="#FFFFCE00"
-                app:banner_radius="@dimen/dp_0"
-                app:layout_constraintTop_toTopOf="parent" />
-
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

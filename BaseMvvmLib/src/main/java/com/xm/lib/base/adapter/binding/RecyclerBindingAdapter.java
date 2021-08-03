@@ -37,6 +37,13 @@ public class RecyclerBindingAdapter {
         BindingRecyclerAdapter.setupPagingRecyclerView(recyclerView, adapter, layoutManager, usePaging, footerAdapter);
     }
 
+    @BindingAdapter(value = {"rv_adapter", "rv_layoutManager", "usePaging", "headerAdapter", "footerAdapter"}, requireAll = true)
+    public static void initPagingAdapter(RecyclerView recyclerView, BaseRecyclerAdapter adapter
+            , RecyclerView.LayoutManager layoutManager, boolean usePaging,LoadStateAdapter headerAdapter, LoadStateAdapter footerAdapter) {
+        LogUtilsKt.log("initPagingAdapter");
+        BindingRecyclerAdapter.setupPagingRecyclerView(recyclerView, adapter, layoutManager, usePaging, headerAdapter, footerAdapter);
+    }
+
 
     @BindingAdapter(value = {"scrollToPosition"}, requireAll = true)
     public static void scrollToPosition(RecyclerView recyclerView, int position) {

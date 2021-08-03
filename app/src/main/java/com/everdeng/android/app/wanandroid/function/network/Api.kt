@@ -1,5 +1,6 @@
 package com.everdeng.android.app.wanandroid.function.network
 
+import com.everdeng.android.app.wanandroid.function.network.response.BannerData
 import com.everdeng.android.app.wanandroid.function.network.response.HomePageData
 import com.xm.netmodel.impl.HttpRequestImpl
 import io.reactivex.Observable
@@ -25,6 +26,10 @@ interface Api {
     suspend fun getHomePageList(
         @Path("page") page: Int
     ): BaseResponse<HomePageData>?
+
+    @GET("banner/json")
+    suspend fun getBanner(): BaseResponse<List<BannerData>>?
+
 
     @GET("project/tree/json")
     fun getSortData(): Observable<SortResponse>

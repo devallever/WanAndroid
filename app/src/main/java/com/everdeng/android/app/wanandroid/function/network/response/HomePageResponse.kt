@@ -1,11 +1,5 @@
 package com.everdeng.android.app.wanandroid.function.network.response
 
-import com.everdeng.android.app.wanandroid.function.network.BaseResponse
-
-class HomePageResponse: BaseResponse<HomePageData>() {
-
-}
-
 data class HomePageData(
     val curPage: Int,
     val datas: List<HomeArticleData>,
