@@ -1,14 +1,13 @@
-package com.everdeng.android.app.wanandroid.ui.adapter
+package com.everdeng.android.app.wanandroid.ui.article.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import com.everdeng.android.app.wanandroid.ui.adapter.bean.ArticleItem
-import com.everdeng.android.app.wanandroid.ui.adapter.view.ArticleItemImgView
-import com.everdeng.android.app.wanandroid.ui.adapter.view.ArticleItemView
+import com.everdeng.android.app.wanandroid.ui.article.adapter.bean.ArticleItem
+import com.everdeng.android.app.wanandroid.ui.article.adapter.view.ArticleItemImgView
+import com.everdeng.android.app.wanandroid.ui.article.adapter.view.ArticleItemView
 import com.everdeng.android.app.wanandroid.ui.home.adapter.view.HomeBannerItemView
 import com.xm.lib.base.adapter.recyclerview.BaseRecyclerAdapter
 import com.xm.lib.base.adapter.recyclerview.BaseViewHolder
-import com.xm.lib.util.log
 
 class ArticleItemAdapter(diffCallback: DiffUtil.ItemCallback<ArticleItem>) :
     BaseRecyclerAdapter<ArticleItem, BaseViewHolder<ArticleItem>>(diffCallback) {

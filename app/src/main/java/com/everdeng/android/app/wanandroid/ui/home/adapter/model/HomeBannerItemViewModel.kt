@@ -30,10 +30,15 @@ class HomeBannerItemViewModel: BaseRvCustomViewModelKt() {
 
     override fun initEvent() {
         super.initEvent()
+        loadBanner()
+    }
+
+    fun loadBanner() {
         viewModelScope.launch {
             val response = NetRepository.getBanner {
                 loge("获取banner失败：$it" )
             }
+            bannerItemList.clear()
             response?.map {
                 val item = HomeBannerItem()
                 item.url = it.imagePath

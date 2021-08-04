@@ -1,4 +1,4 @@
-package com.everdeng.android.app.wanandroid.ui.adapter.bean
+package com.everdeng.android.app.wanandroid.ui.article.adapter.bean
 
 import android.os.Parcel
 import android.os.Parcelable

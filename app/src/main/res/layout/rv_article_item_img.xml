@@ -6,7 +6,7 @@
 
         <variable
             name="articleItemViewModel"
-            type="com.everdeng.android.app.wanandroid.ui.adapter.model.ArticleItemViewModel" />
+            type="com.everdeng.android.app.wanandroid.ui.article.adapter.model.ArticleItemViewModel" />
 
     </data>
 

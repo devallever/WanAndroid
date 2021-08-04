@@ -5,7 +5,7 @@
 
         <variable
             name="data"
-            type="com.everdeng.android.app.wanandroid.ui.adapter.bean.ArticleItem" />
+            type="com.everdeng.android.app.wanandroid.ui.article.adapter.bean.ArticleItem" />
     </data>
 
     <LinearLayout

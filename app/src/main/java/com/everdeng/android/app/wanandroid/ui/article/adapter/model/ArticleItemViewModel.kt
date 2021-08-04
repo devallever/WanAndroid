@@ -1,4 +1,4 @@
-package com.everdeng.android.app.wanandroid.ui.adapter.model
+package com.everdeng.android.app.wanandroid.ui.article.adapter.model
 
 import androidx.databinding.ObservableField
 import com.xm.lib.base.adapter.recyclerview.BaseRvCustomViewModelKt

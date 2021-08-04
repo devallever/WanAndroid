@@ -6,7 +6,7 @@ import com.everdeng.android.app.wanandroid.BR
 import com.everdeng.android.app.wanandroid.R
 import com.everdeng.android.app.wanandroid.base.BaseDataActivity2
 import com.everdeng.android.app.wanandroid.databinding.ActivityArticleBinding
-import com.everdeng.android.app.wanandroid.ui.adapter.bean.ArticleItem
+import com.everdeng.android.app.wanandroid.ui.article.adapter.bean.ArticleItem
 import com.everdeng.android.app.wanandroid.ui.article.model.ArticleViewModel
 import com.xm.lib.base.config.DataBindingConfig
 import com.xm.lib.manager.IntentManager

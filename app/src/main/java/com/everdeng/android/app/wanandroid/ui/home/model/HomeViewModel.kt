@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.everdeng.android.app.wanandroid.R
-import com.everdeng.android.app.wanandroid.ui.adapter.ArticleItemAdapter
+import com.everdeng.android.app.wanandroid.ui.article.adapter.ArticleItemAdapter
 import com.everdeng.android.app.wanandroid.ui.adapter.FooterAdapter
-import com.everdeng.android.app.wanandroid.ui.adapter.bean.ArticleItem
-import com.everdeng.android.app.wanandroid.ui.adapter.paging.ArticlePageDataSource
+import com.everdeng.android.app.wanandroid.ui.article.adapter.bean.ArticleItem
+import com.everdeng.android.app.wanandroid.ui.article.adapter.paging.ArticlePageDataSource
 import com.everdeng.android.app.wanandroid.ui.article.ArticleActivity
 import com.xm.lib.base.inters.IBaseView
 import com.xm.lib.base.model.BaseViewModelKt

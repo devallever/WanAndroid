@@ -2,11 +2,10 @@ package com.everdeng.android.app.wanandroid.ui.home.adapter.view
 
 import android.content.Context
 import android.util.AttributeSet
-import androidx.recyclerview.widget.RecyclerView
 import com.everdeng.android.app.wanandroid.BR
 import com.everdeng.android.app.wanandroid.R
 import com.everdeng.android.app.wanandroid.databinding.ItemHomeBannerBinding
-import com.everdeng.android.app.wanandroid.ui.adapter.bean.ArticleItem
+import com.everdeng.android.app.wanandroid.ui.article.adapter.bean.ArticleItem
 import com.everdeng.android.app.wanandroid.ui.home.adapter.bean.HomeBannerItem
 import com.everdeng.android.app.wanandroid.ui.home.adapter.model.HomeBannerItemViewModel
 import com.xm.lib.base.adapter.recyclerview.BaseRecyclerAdapter
@@ -32,6 +31,9 @@ class HomeBannerItemView @JvmOverloads constructor(
                 .setIndicator(CircleIndicator(mCxt))
                 .setOnBannerListener { data, position -> toast((data as HomeBannerItem).url)
                 }
+        }
+        if (mViewModel.bannerItemList.isEmpty()) {
+            mViewModel.loadBanner()
         }
     }
 

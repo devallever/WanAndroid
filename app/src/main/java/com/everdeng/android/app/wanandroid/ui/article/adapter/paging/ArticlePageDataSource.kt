@@ -1,7 +1,7 @@
-package com.everdeng.android.app.wanandroid.ui.adapter.paging
+package com.everdeng.android.app.wanandroid.ui.article.adapter.paging
 
 import com.everdeng.android.app.wanandroid.function.network.NetRepository
-import com.everdeng.android.app.wanandroid.ui.adapter.bean.ArticleItem
+import com.everdeng.android.app.wanandroid.ui.article.adapter.bean.ArticleItem
 import com.xm.lib.base.paging.BasePageSource
 import com.xm.lib.util.TimeHelper
 import kotlinx.coroutines.Dispatchers
