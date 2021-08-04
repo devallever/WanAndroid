@@ -67,7 +67,12 @@ abstract class BaseTabActivity<DB: ViewDataBinding, VM: BaseTabViewModel> : Base
             }
 
             override fun onPageSelected(position: Int) {
-                mBinding.tvTitle.text = getStringRes(tabModel.getTab(position).labelResId)
+                val title = if (position == 0) {
+                    getStringRes(R.string.app_name)
+                } else {
+                    getStringRes(tabModel.getTab(position).labelResId)
+                }
+                mBinding.tvTitle.text = title
             }
 
             override fun onPageScrollStateChanged(state: Int) {}

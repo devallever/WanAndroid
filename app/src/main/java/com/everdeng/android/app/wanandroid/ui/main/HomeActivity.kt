@@ -2,6 +2,7 @@ package com.everdeng.android.app.wanandroid.ui.main
 
 import androidx.fragment.app.Fragment
 import com.everdeng.android.app.wanandroid.R
+import com.everdeng.android.app.wanandroid.ui.found.FoundFragment
 import com.everdeng.android.app.wanandroid.ui.home.HomeFragment
 import com.everdeng.android.app.wanandroid.ui.main.model.MainViewModel
 import com.everdeng.android.app.wanandroid.ui.mine.MineFragment
@@ -18,9 +19,9 @@ class HomeActivity : BaseTabActivity<ActivityBaseTabBinding, MainViewModel>(){
     override fun statusColor(): Int = R.color.colorPrimary
     override fun getTabModel(): MutableList<Tab> {
         val tabList = mutableListOf<Tab>()
-        tabList.add(Tab(HomeFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.app_name))
-        tabList.add(Tab(SystemFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_system))
+        tabList.add(Tab(HomeFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_home))
         tabList.add(Tab(SystemFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_project))
+        tabList.add(Tab(SystemFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_found))
         tabList.add(Tab(QAFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_qa))
         tabList.add(Tab(SystemFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_mine))
         return tabList
@@ -30,7 +31,7 @@ class HomeActivity : BaseTabActivity<ActivityBaseTabBinding, MainViewModel>(){
         val fragmentList = mutableListOf<Fragment>()
         fragmentList.add(HomeFragment())
         fragmentList.add(SystemFragment())
-        fragmentList.add(ProjectFragment())
+        fragmentList.add(FoundFragment())
         fragmentList.add(QAFragment())
         fragmentList.add(MineFragment())
         return fragmentList
