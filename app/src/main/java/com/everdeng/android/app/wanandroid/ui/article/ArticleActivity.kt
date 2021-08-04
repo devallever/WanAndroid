@@ -12,6 +12,7 @@ import com.xm.lib.base.config.DataBindingConfig
 import com.xm.lib.manager.IntentManager
 import com.xm.lib.util.WebViewConfig
 import com.xm.lib.util.log
+import com.xm.lib.util.toast
 
 class ArticleActivity : BaseDataActivity2<ActivityArticleBinding, ArticleViewModel>() {
 
@@ -30,6 +31,20 @@ class ArticleActivity : BaseDataActivity2<ActivityArticleBinding, ArticleViewMod
 //        mBinding.webView.loadUrl(articleItem.articleUrl)
         val webViewConfig = WebViewConfig()
         webViewConfig.loadData(mBinding.webView, articleItem.articleUrl)
+
+        initToolbar(mBinding.toolBar, articleItem.title, R.menu.article_menu)
+        mBinding.toolBar.setOnMenuItemClickListener {
+            toast(it.title.toString())
+            when(it.itemId) {
+                R.id.menu_collect -> {
+
+                }
+                R.id.menu_like -> {
+
+                }
+            }
+            return@setOnMenuItemClickListener true
+        }
     }
 
     override fun initDataBindingConfig() =

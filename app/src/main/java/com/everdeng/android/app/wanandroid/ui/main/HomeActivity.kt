@@ -18,7 +18,7 @@ class HomeActivity : BaseTabActivity<ActivityBaseTabBinding, MainViewModel>(){
     override fun statusColor(): Int = R.color.colorPrimary
     override fun getTabModel(): MutableList<Tab> {
         val tabList = mutableListOf<Tab>()
-        tabList.add(Tab(HomeFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_home))
+        tabList.add(Tab(HomeFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.app_name))
         tabList.add(Tab(SystemFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_system))
         tabList.add(Tab(SystemFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_project))
         tabList.add(Tab(QAFragment::class.java, R.drawable.ic_dashboard_black_24dp, R.string.title_qa))

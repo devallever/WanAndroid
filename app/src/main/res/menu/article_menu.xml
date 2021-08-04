@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_collect"
+        app:showAsAction="never"
+        android:title="收藏"
+        android:icon="@mipmap/ic_launcher"/>
+
+    <item
+        android:id="@+id/menu_like"
+        app:showAsAction="never"
+        android:title="点赞"
+        android:icon="@drawable/ic_notifications_black_24dp"/>
+</menu>
