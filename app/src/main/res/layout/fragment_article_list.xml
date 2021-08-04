@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="articleListViewModel"
+            type="com.everdeng.android.app.wanandroid.ui.article.model.ArticleListViewModel" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        refreshStatus="@{articleListViewModel.refreshStatus}">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvArticle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            rv_adapter="@{articleListViewModel.adapter}"
+            rv_layoutManager="@{articleListViewModel.layoutManager}"
+            usePaging="@{articleListViewModel.usePaging}"
+            footerAdapter="@{articleListViewModel.footerAdapter}"
+            scrollToPosition="@{articleListViewModel.scrollToPosition}"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</layout>

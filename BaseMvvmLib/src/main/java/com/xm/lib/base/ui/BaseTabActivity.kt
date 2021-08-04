@@ -57,6 +57,7 @@ abstract class BaseTabActivity<DB: ViewDataBinding, VM: BaseTabViewModel> : Base
     private fun initViewPager() {
         mBinding.viewPager.offscreenPageLimit = tabModel.tabCount
         mBinding.viewPager.adapter = mViewPagerAdapter
+        mBinding.viewPager.setScanScroll(enableScroll())
 
         mBinding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
@@ -159,5 +160,7 @@ abstract class BaseTabActivity<DB: ViewDataBinding, VM: BaseTabViewModel> : Base
 
     abstract fun getTabModel(): MutableList<Tab>
     abstract fun getFragmentList(): MutableList<Fragment>
+
+    protected open fun enableScroll(): Boolean = true
 
  }

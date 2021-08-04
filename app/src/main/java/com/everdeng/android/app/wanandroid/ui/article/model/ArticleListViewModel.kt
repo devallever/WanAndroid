@@ -1,4 +1,4 @@
-package com.everdeng.android.app.wanandroid.ui.home.model
+package com.everdeng.android.app.wanandroid.ui.article.model
 
 import android.view.ViewGroup
 import androidx.databinding.ObservableField
@@ -11,11 +11,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.everdeng.android.app.wanandroid.R
-import com.everdeng.android.app.wanandroid.ui.article.adapter.ArticleItemAdapter
 import com.everdeng.android.app.wanandroid.ui.adapter.FooterAdapter
+import com.everdeng.android.app.wanandroid.ui.article.ArticleActivity
+import com.everdeng.android.app.wanandroid.ui.article.adapter.ArticleItemAdapter
 import com.everdeng.android.app.wanandroid.ui.article.adapter.bean.ArticleItem
 import com.everdeng.android.app.wanandroid.ui.article.adapter.paging.ArticlePageDataSource
-import com.everdeng.android.app.wanandroid.ui.article.ArticleActivity
 import com.xm.lib.base.inters.IBaseView
 import com.xm.lib.base.model.BaseViewModelKt
 import kotlinx.coroutines.flow.collect
@@ -24,8 +24,7 @@ import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 
-class HomeViewModel : BaseViewModelKt<IBaseView>() {
-
+class ArticleListViewModel: BaseViewModelKt<IBaseView>() {
     private val pageDataList by lazy {
         //pageSize根据接口每页数量而定
         Pager(PagingConfig(pageSize = 20)) {

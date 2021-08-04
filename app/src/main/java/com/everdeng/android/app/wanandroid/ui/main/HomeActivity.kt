@@ -30,10 +30,14 @@ class HomeActivity : BaseTabActivity<ActivityBaseTabBinding, MainViewModel>(){
     override fun getFragmentList(): MutableList<Fragment> {
         val fragmentList = mutableListOf<Fragment>()
         fragmentList.add(HomeFragment())
-        fragmentList.add(SystemFragment())
+        fragmentList.add(ProjectFragment())
         fragmentList.add(FoundFragment())
         fragmentList.add(QAFragment())
         fragmentList.add(MineFragment())
         return fragmentList
     }
+
+    override fun enableScroll() = false
+
+
 }
