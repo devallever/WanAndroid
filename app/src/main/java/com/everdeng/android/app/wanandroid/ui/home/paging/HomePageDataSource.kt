@@ -1,4 +1,4 @@
-package com.everdeng.android.app.wanandroid.ui.article.adapter.paging
+package com.everdeng.android.app.wanandroid.ui.home.paging
 
 import com.everdeng.android.app.wanandroid.function.network.NetRepository
 import com.everdeng.android.app.wanandroid.ui.article.adapter.bean.ArticleItem
@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
-class ArticlePageDataSource: BasePageSource<ArticleItem>() {
+class HomePageDataSource: BasePageSource<ArticleItem>() {
 
     private var pageCount = 1
 

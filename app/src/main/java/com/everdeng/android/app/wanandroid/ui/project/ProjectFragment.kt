@@ -18,14 +18,14 @@ class ProjectFragment : BaseFragment2<FragmentProjectBinding, ProjectViewModel>(
 
         val titles = listOf("标题", "标题", "标题")
         val fragmentList = arrayListOf<Fragment>()
-        fragmentList.add(ArticleListFragment())
-        fragmentList.add(ArticleListFragment())
-        fragmentList.add(ArticleListFragment())
+        fragmentList.add(ProjectArticleListFragment())
+        fragmentList.add(ProjectArticleListFragment())
+        fragmentList.add(ProjectArticleListFragment())
 
 
         val mViewPagerAdapter = ViewPagerAdapter(childFragmentManager, mCxt, fragmentList)
         mBinding.viewPager.adapter = mViewPagerAdapter
-        mBinding.viewPager.offscreenPageLimit = titles.size
+//        mBinding.viewPager.offscreenPageLimit = titles.size
         mBinding.slideTabLayout.setViewPager(mBinding.viewPager, titles.toTypedArray())
     }
 

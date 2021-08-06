@@ -8,7 +8,7 @@
 
         <variable
             name="homeBannerViewModel"
-            type="com.everdeng.android.app.wanandroid.ui.home.adapter.model.HomeBannerItemViewModel" />
+            type="com.everdeng.android.app.wanandroid.ui.article.adapter.model.BannerItemViewModel" />
     </data>
 
 

@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.everdeng.android.app.wanandroid.ui.article.adapter.bean.ArticleItem
 import com.everdeng.android.app.wanandroid.ui.article.adapter.view.ArticleItemImgView
 import com.everdeng.android.app.wanandroid.ui.article.adapter.view.ArticleItemView
-import com.everdeng.android.app.wanandroid.ui.home.adapter.view.HomeBannerItemView
+import com.everdeng.android.app.wanandroid.ui.article.adapter.view.BannerItemView
 import com.xm.lib.base.adapter.recyclerview.BaseRecyclerAdapter
 import com.xm.lib.base.adapter.recyclerview.BaseViewHolder
 
@@ -15,7 +15,7 @@ class ArticleItemAdapter(diffCallback: DiffUtil.ItemCallback<ArticleItem>) :
         BaseViewHolder(
             when (viewType) {
                 -1 -> {
-                    HomeBannerItemView(mContext)
+                    BannerItemView(mContext)
                 }
                 0 -> {
 //                    log("bindViewHolder: viewType = $viewType")

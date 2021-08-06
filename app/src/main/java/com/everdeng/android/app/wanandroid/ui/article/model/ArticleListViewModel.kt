@@ -15,23 +15,24 @@ import com.everdeng.android.app.wanandroid.ui.adapter.FooterAdapter
 import com.everdeng.android.app.wanandroid.ui.article.ArticleActivity
 import com.everdeng.android.app.wanandroid.ui.article.adapter.ArticleItemAdapter
 import com.everdeng.android.app.wanandroid.ui.article.adapter.bean.ArticleItem
-import com.everdeng.android.app.wanandroid.ui.article.adapter.paging.ArticlePageDataSource
-import com.everdeng.android.app.wanandroid.ui.project.paging.ProjectArticlePageDataSource
 import com.xm.lib.base.inters.IBaseView
 import com.xm.lib.base.model.BaseViewModelKt
+import com.xm.lib.base.paging.BasePageSource
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 
-class ArticleListViewModel: BaseViewModelKt<IBaseView>() {
+abstract class ArticleListViewModel: BaseViewModelKt<IBaseView>() {
     private val pageDataList by lazy {
         //pageSize根据接口每页数量而定
         Pager(PagingConfig(pageSize = 20)) {
-            ProjectArticlePageDataSource()
+            getPageDataSource()
         }.flow.cachedIn(viewModelScope)
     }
+
+    abstract fun  getPageDataSource(): BasePageSource<ArticleItem>
 
     lateinit var layoutManager: LinearLayoutManager
     lateinit var adapter: ArticleItemAdapter

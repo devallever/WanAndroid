@@ -1,8 +1,8 @@
-package com.everdeng.android.app.wanandroid.ui.home.adapter.model
+package com.everdeng.android.app.wanandroid.ui.article.adapter.model
 
 import androidx.lifecycle.viewModelScope
 import com.everdeng.android.app.wanandroid.function.network.NetRepository
-import com.everdeng.android.app.wanandroid.ui.home.adapter.bean.HomeBannerItem
+import com.everdeng.android.app.wanandroid.ui.article.adapter.bean.BannerItem
 import com.xm.lib.base.adapter.recyclerview.BaseRvCustomViewModelKt
 import com.xm.lib.manager.engine.LoadGlide
 import com.xm.lib.util.log
@@ -11,14 +11,14 @@ import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 import kotlinx.coroutines.launch
 
-class HomeBannerItemViewModel: BaseRvCustomViewModelKt() {
-    val bannerItemList = mutableListOf<HomeBannerItem>()
+class BannerItemViewModel: BaseRvCustomViewModelKt() {
+    val bannerItemList = mutableListOf<BannerItem>()
 
     val bannerAdapter by lazy {
-        object : BannerImageAdapter<HomeBannerItem>(bannerItemList) {
+        object : BannerImageAdapter<BannerItem>(bannerItemList) {
             override fun onBindView(
                 holder: BannerImageHolder?,
-                data: HomeBannerItem?,
+                data: BannerItem?,
                 position: Int,
                 size: Int
             ) {
@@ -40,7 +40,7 @@ class HomeBannerItemViewModel: BaseRvCustomViewModelKt() {
             }
             bannerItemList.clear()
             response?.map {
-                val item = HomeBannerItem()
+                val item = BannerItem()
                 item.url = it.imagePath
                 bannerItemList.add(item)
             }
