@@ -16,6 +16,7 @@ import com.everdeng.android.app.wanandroid.ui.article.ArticleActivity
 import com.everdeng.android.app.wanandroid.ui.article.adapter.ArticleItemAdapter
 import com.everdeng.android.app.wanandroid.ui.article.adapter.bean.ArticleItem
 import com.everdeng.android.app.wanandroid.ui.article.adapter.paging.ArticlePageDataSource
+import com.everdeng.android.app.wanandroid.ui.project.paging.ProjectArticlePageDataSource
 import com.xm.lib.base.inters.IBaseView
 import com.xm.lib.base.model.BaseViewModelKt
 import kotlinx.coroutines.flow.collect
@@ -28,7 +29,7 @@ class ArticleListViewModel: BaseViewModelKt<IBaseView>() {
     private val pageDataList by lazy {
         //pageSize根据接口每页数量而定
         Pager(PagingConfig(pageSize = 20)) {
-            ArticlePageDataSource()
+            ProjectArticlePageDataSource()
         }.flow.cachedIn(viewModelScope)
     }
 

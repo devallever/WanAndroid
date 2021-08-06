@@ -1,7 +1,7 @@
 package com.everdeng.android.app.wanandroid.function.network
 
 import com.everdeng.android.app.wanandroid.function.network.response.BannerData
-import com.everdeng.android.app.wanandroid.function.network.response.HomePageData
+import com.everdeng.android.app.wanandroid.function.network.response.PageData
 import com.xm.netmodel.impl.HttpRequestImpl
 import io.reactivex.Observable
 import retrofit2.Response
@@ -25,7 +25,13 @@ interface Api {
     @GET("article/list/{page}/json")
     suspend fun getHomePageList(
         @Path("page") page: Int
-    ): BaseResponse<HomePageData>?
+    ): BaseResponse<PageData>?
+
+    @GET("project/list/{page}/json?cid=294")
+    suspend fun getProjectPageList(
+        @Path("page") page: Int
+    ): BaseResponse<PageData>?
+
 
     @GET("banner/json")
     suspend fun getBanner(): BaseResponse<List<BannerData>>?

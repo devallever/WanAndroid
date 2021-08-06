@@ -1,8 +1,8 @@
 package com.everdeng.android.app.wanandroid.function.network.response
 
-data class HomePageData(
+data class PageData(
     val curPage: Int,
-    val datas: List<HomeArticleData>,
+    val datas: List<ArticleData>,
     val offset: Int,
     val over: Boolean,
     val pageCount: Int,
@@ -10,7 +10,7 @@ data class HomePageData(
     val total: Int
 )
 
-data class HomeArticleData(
+data class ArticleData(
     val apkLink: String,
     val audit: Int,
     val author: String,
