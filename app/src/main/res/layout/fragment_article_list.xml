@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -7,22 +8,42 @@
             type="com.everdeng.android.app.wanandroid.ui.article.model.ArticleListViewModel" />
     </data>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/refreshLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        refreshStatus="@{articleListViewModel.refreshStatus}">
+        android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvArticle"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            rv_adapter="@{articleListViewModel.adapter}"
-            rv_layoutManager="@{articleListViewModel.layoutManager}"
-            usePaging="@{articleListViewModel.usePaging}"
-            footerAdapter="@{articleListViewModel.footerAdapter}"
-            scrollToPosition="@{articleListViewModel.scrollToPosition}"/>
+            refreshStatus="@{articleListViewModel.refreshStatus}">
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvArticle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                rv_adapter="@{articleListViewModel.adapter}"
+                rv_layoutManager="@{articleListViewModel.layoutManager}"
+                usePaging="@{articleListViewModel.usePaging}"
+                footerAdapter="@{articleListViewModel.footerAdapter}"
+                scrollToPosition="@{articleListViewModel.scrollToPosition}"/>
+
+
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabTop"
+            android:layout_width="@dimen/dp_54"
+            android:layout_height="@dimen/dp_54"
+            android:layout_margin="@dimen/dp_20"
+            android:src="@drawable/ic_home_black_24dp"
+            android:backgroundTint="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:onClick="@{() -> articleListViewModel.onClickScrollTop()}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </layout>

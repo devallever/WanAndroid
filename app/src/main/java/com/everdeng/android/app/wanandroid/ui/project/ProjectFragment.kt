@@ -1,11 +1,10 @@
 package com.everdeng.android.app.wanandroid.ui.project
 
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.everdeng.android.app.wanandroid.BR
 import com.everdeng.android.app.wanandroid.R
 import com.everdeng.android.app.wanandroid.base.BaseFragment2
 import com.everdeng.android.app.wanandroid.databinding.FragmentProjectBinding
-import com.everdeng.android.app.wanandroid.ui.article.ArticleListFragment
 import com.everdeng.android.app.wanandroid.ui.project.model.ProjectViewModel
 import com.xm.lib.base.config.DataBindingConfig
 import com.xm.lib.widget.viewpager.ViewPagerAdapter
@@ -15,18 +14,19 @@ class ProjectFragment : BaseFragment2<FragmentProjectBinding, ProjectViewModel>(
         DataBindingConfig(R.layout.fragment_project, BR.projectViewModel)
 
     override fun initDataAndEvent() {
-
-        val titles = listOf("标题", "标题", "标题")
-        val fragmentList = arrayListOf<Fragment>()
-        fragmentList.add(ProjectArticleListFragment())
-        fragmentList.add(ProjectArticleListFragment())
-        fragmentList.add(ProjectArticleListFragment())
-
-
-        val mViewPagerAdapter = ViewPagerAdapter(childFragmentManager, mCxt, fragmentList)
-        mBinding.viewPager.adapter = mViewPagerAdapter
-//        mBinding.viewPager.offscreenPageLimit = titles.size
-        mBinding.slideTabLayout.setViewPager(mBinding.viewPager, titles.toTypedArray())
+        lifecycleScope.launchWhenResumed {
+            mViewModel.init()
+        }
+        mViewModel.vpAdapter = ViewPagerAdapter(childFragmentManager, mCxt, mViewModel.fragmentList, mBinding.viewPager)
+        mBinding.viewPager.adapter = mViewModel.vpAdapter
+//        mBinding.viewPager.offscreenPageLimit = 5
+        mBinding.slideTabLayout.setViewPager(mBinding.viewPager)
+//        mViewModel.titleLiveData.observe(this,
+//            {
+//                it.map {it
+//                    mBinding.slideTabLayout.addNewTab(it)
+//                }
+//            })
     }
 
     override fun destroyView() {

@@ -18,14 +18,12 @@ import com.xm.lib.base.adapter.pager.ViewPagerItemAdapter;
  */
 public class BindingViewPagerAdapter {
 
-    public static void initFragmentViewPager(ViewPager mViewPager, FragmentManager mFragmentManager, SparseArray<Fragment> mData){
-        ViewPagerFragmentAdapter fragmentAdapter = new ViewPagerFragmentAdapter(mFragmentManager, mData);
-        mViewPager.setAdapter(fragmentAdapter);
-    }
+    /**
+     * val mViewPagerAdapter = ViewPagerAdapter(childFragmentManager, mCxt, mViewModel.fragmentList)
+     *         mBinding.viewPager.adapter = mViewPagerAdapter
+     *         mBinding.viewPager.offscreenPageLimit = 5
+     *         mBinding.slideTabLayout.setViewPager(mBinding.viewPager, mViewModel.titles.toTypedArray())
+     */
 
 
-    public static void initItemViewPager(ViewPager mViewPager,  SparseArray<View> mData){
-        ViewPagerItemAdapter pagerItemAdapter = new ViewPagerItemAdapter(mData);
-        mViewPager.setAdapter(pagerItemAdapter);
-    }
 }

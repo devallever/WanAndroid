@@ -6,5 +6,6 @@ import com.everdeng.android.app.wanandroid.ui.project.paging.ProjectArticlePageD
 import com.xm.lib.base.paging.BasePageSource
 
 class ProjectArticleListViewModel: ArticleListViewModel() {
-    override fun getPageDataSource(): BasePageSource<ArticleItem> = ProjectArticlePageDataSource()
+    var cid: Int = 0
+    override fun getPageDataSource(): BasePageSource<ArticleItem> = ProjectArticlePageDataSource(cid)
 }

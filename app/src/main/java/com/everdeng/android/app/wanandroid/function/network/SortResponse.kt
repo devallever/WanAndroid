@@ -1,11 +1,9 @@
 package com.everdeng.android.app.wanandroid.function.network
 
-
-class SortResponse() : BaseResponse<List<SortData>>() {
-
-}
-
-data class SortData(
+/**
+ * 项目分类
+ */
+data class ProjectSortData(
     val children: List<Any>,
     val courseId: Int,
     val id: Int,

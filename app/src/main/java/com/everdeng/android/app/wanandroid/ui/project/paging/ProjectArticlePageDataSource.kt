@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
-class ProjectArticlePageDataSource: BasePageSource<ArticleItem>() {
+class ProjectArticlePageDataSource(private val cid: Int): BasePageSource<ArticleItem>() {
 
     private var pageCount = 1
 
@@ -36,7 +36,7 @@ class ProjectArticlePageDataSource: BasePageSource<ArticleItem>() {
 
     override suspend fun getData(pageNum: Int) = withContext(Dispatchers.IO) {
         val result = mutableListOf<ArticleItem>()
-        val response = NetRepository.getProjectPageList(pageNum) {
+        val response = NetRepository.getProjectPageList(pageNum, cid) {
 
         }
         pageCount = response?.pageCount?:1

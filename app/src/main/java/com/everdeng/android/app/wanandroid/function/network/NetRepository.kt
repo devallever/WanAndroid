@@ -4,32 +4,11 @@ import com.everdeng.android.app.wanandroid.function.network.response.BannerData
 import com.everdeng.android.app.wanandroid.function.network.response.PageData
 import com.xm.lib.util.log
 import com.xm.lib.util.loge
-import retrofit2.Response
 
 object NetRepository {
 
     private val apiService by lazy {
         ServiceCreator.create(Api::class.java)
-    }
-
-    suspend fun getSortData(): SortResponse? {
-        return try {
-            val sortResponse = apiService.getSortData2()
-            sortResponse?.data ?: return null
-            if (sortResponse.errorCode != 0) {
-                loge(sortResponse.errorMsg)
-                return null
-            } else {
-                sortResponse
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            null
-        }
-    }
-
-    suspend fun getSortData1(): Response<BaseResponse<List<SortData>>>? {
-        return apiService.getSortData1()
     }
 
     suspend fun getHomePageList(pageNum: Int, failureTask: (errorMsg: String) -> Unit): PageData? {
@@ -38,9 +17,9 @@ object NetRepository {
         }
     }
 
-    suspend fun getProjectPageList(pageNum: Int, failureTask: (errorMsg: String) -> Unit): PageData? {
+    suspend fun getProjectPageList(cid: Int, pageNum: Int, failureTask: (errorMsg: String) -> Unit): PageData? {
         return getData(failureTask, "获取项目文章列表成功") {
-            apiService.getProjectPageList(pageNum)
+            apiService.getProjectPageList(cid, pageNum)
         }
     }
 
@@ -50,11 +29,9 @@ object NetRepository {
         }
     }
 
-
-
-    suspend fun getSortData4(failureTask: (errorMsg: String) -> Unit): List<SortData>? {
-        return getData(failureTask, "获取分类数据成功") {
-            apiService.getSortData2()
+    suspend fun getProjectSortData(failureTask: (errorMsg: String) -> Unit): List<ProjectSortData>? {
+        return getData(failureTask, "获取项目分类成功") {
+            apiService.getProjectSort()
         }
     }
 
@@ -76,25 +53,7 @@ object NetRepository {
         }
     }
 
-    suspend fun getSortData2(failureTask:(errorMsg: String) -> Unit): List<SortData>? {
-        return try {
-            val baseResponse = apiService.getSortData2()
-            val result = getResponseData(baseResponse) {
-                failureTask(it)
-            }
-            if (result != null) {
-                log("获取分类成功")
-            }
-            return result
-        } catch (e: Exception) {
-            //失败
-            e.printStackTrace()
-            failureTask("${e.message}")
-            null
-        }
-    }
-
-    suspend fun getSortData3(failureTask:(errorMsg: String) -> Unit): List<SortData>? {
+    suspend fun getSortData3(failureTask:(errorMsg: String) -> Unit): List<ProjectSortData>? {
         return try {
             val baseResponse = apiService.getSortData3()
             val result = getResponseData(baseResponse) {
