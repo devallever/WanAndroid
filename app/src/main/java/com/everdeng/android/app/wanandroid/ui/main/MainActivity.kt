@@ -1,5 +1,6 @@
 package com.everdeng.android.app.wanandroid.ui.main
 
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.everdeng.android.app.wanandroid.BR
@@ -18,7 +19,7 @@ class MainActivity : BaseDataActivity2<ActivityMainBinding, MainViewModel>() {
 
 
     override fun initDataAndEvent() {
-        CoroutineHelper.ioCoroutine.launch {
+        lifecycleScope.launch {
             Utils.test()
         }
 

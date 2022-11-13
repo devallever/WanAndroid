@@ -65,7 +65,7 @@ public class Utils {
 
     }
 
-    private static String appendZero(String value, int length) {
+    public static String appendZero(String value, int length) {
         int valueLength = value.length();
         if (valueLength >= length) {
             return value;
